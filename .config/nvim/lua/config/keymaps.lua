@@ -13,6 +13,7 @@ vim.api.nvim_set_keymap("", "L", "$", { noremap = true, silent = true })
 -- edit
 vim.api.nvim_set_keymap("", "x", '"_x', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "dd", '"_dd', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-d>", "dd", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-a>", "ggVG", { noremap = true, silent = true })
 
 -- buffer
