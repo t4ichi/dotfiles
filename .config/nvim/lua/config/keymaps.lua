@@ -9,6 +9,8 @@ vim.api.nvim_set_keymap("", "K", "10k", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("", "J", "10j", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("", "H", "0", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("", "L", "$", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("", "<C-l>", "w", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("", "<C-h>", "b", { noremap = true, silent = true })
 
 -- edit
 vim.api.nvim_set_keymap("", "x", '"_x', { noremap = true, silent = true })
