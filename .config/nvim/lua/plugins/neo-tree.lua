@@ -20,8 +20,7 @@ return {
                 },
                 window = {
                     mappings = {
-                        ["o"] = "open",  -- Set 'o' to open files
-                    },
+                        ["o"] = "open",                    },
                 },
             })
 
