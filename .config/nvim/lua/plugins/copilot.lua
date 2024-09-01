@@ -7,18 +7,24 @@ return {
       vim.g.copilot_filetypes = { yaml = true }
       local keymap = vim.keymap.set
       -- https://github.com/orgs/community/discussions/29817#discussioncomment-4217615
-      keymap("i", "<C-g>", 'copilot#Accept("<CR>")',
-        { silent = true, expr = true, script = true, replace_keycodes = false })
+      -- keymap("i", "<C-g>", 'copilot#Accept("<CR>")',
+      vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+        expr = true,
+        replace_keycodes = false
+      })
+      vim.g.copilot_no_tab_map = true     --   { silent = true, expr = true, script = true, replace_keycodes = false })
       keymap("i", "<C-j>", "<Plug>(copilot-next)")
       keymap("i", "<C-k>", "<Plug>(copilot-previous)")
       keymap("i", "<C-o>", "<Plug>(copilot-dismiss)")
       keymap("i", "<C-s>", "<Plug>(copilot-suggest)")
+      keymap('i', '<C-L>', '<Plug>(copilot-accept-word)')
     end
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "canary",
     cmd = "CopilotChat",
+    event = "VeryLazy",
     opts = function()
       local user = vim.env.USER or "User"
       user = user:sub(1, 1):upper() .. user:sub(2)
@@ -32,15 +38,6 @@ return {
           layout = 'float',
           width = 0.8,
           height = 0.8,
-          -- popup = {
-          --   border = "rounded",  -- Use a rounded border for the popup
-          --   winblend = 10,       -- Set transparency
-          --   highlight = "NormalFloat", -- Set highlight group for the floating window
-          -- },
-          -- popup = {
-          --   size = { height = "55%", width = "55%" },
-          --   position = "50%",
-          -- },
         },
         selection = function(source)
           local select = require("CopilotChat.select")
@@ -50,9 +47,9 @@ return {
     end,
     keys = {
       { "<c-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
-      { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
+      { "<leader>cc", "", desc = "+ai", mode = { "n", "v" } },
       {
-        "<leader>aa",
+        "<leader>cc",
         function()
           return require("CopilotChat").toggle()
         end,
@@ -60,7 +57,7 @@ return {
         mode = { "n", "v" },
       },
       {
-        "<leader>ax",
+        "<leader>ccx",
         function()
           return require("CopilotChat").reset()
         end,
@@ -68,7 +65,7 @@ return {
         mode = { "n", "v" },
       },
       {
-        "<leader>aq",
+        "<leader>ccq",
         function()
           local input = vim.fn.input("Quick Chat: ")
           if input ~= "" then
@@ -78,13 +75,8 @@ return {
         desc = "Quick Chat (CopilotChat)",
         mode = { "n", "v" },
       },
-      -- -- Show help actions with telescope
-      -- { "<leader>ad", M.pick("help"), desc = "Diagnostic Help (CopilotChat)", mode = { "n", "v" } },
-      -- -- Show prompts actions with telescope
-      -- { "<leader>ap", M.pick("prompt"), desc = "Prompt Actions (CopilotChat)", mode = { "n", "v" } },
-      -- New key mappings
       {
-        "<leader>at",
+        "<leader>cct",
         function()
           return require("CopilotChat").toggle()
         end,
@@ -92,7 +84,7 @@ return {
         mode = { "n", "v" },
       },
       {
-        "<leader>ae",
+        "<leader>cce",
         function()
           return require("CopilotChat").explain()
         end,
@@ -100,7 +92,7 @@ return {
         mode = { "n", "v" },
       },
       {
-        "<leader>ar",
+        "<leader>ccr",
         function()
           return require("CopilotChat").review()
         end,
@@ -108,7 +100,7 @@ return {
         mode = { "n", "v" },
       },
       {
-        "<leader>af",
+        "<leader>ccf",
         function()
           return require("CopilotChat").fix()
         end,
