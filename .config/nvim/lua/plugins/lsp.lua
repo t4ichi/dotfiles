@@ -23,8 +23,12 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function()
           local opts = { noremap = true, silent = true }
+          vim.keymap.set('n', 'gk', '<cmd>lua vim.lsp.buf.hover()<CR>')
           vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-          -- 他のキーマッピングも必要に応じて追加
+          vim.keymap.set('n', 'gk', '<cmd>lua vim.lsp.buf.hover()<CR>')
+          vim.keymap.set('n', 'gf', '<cmd>lua vim.lsp.buf.format()<CR>')
+          vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+          vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
         end
       })
     end
