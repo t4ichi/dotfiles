@@ -14,8 +14,8 @@ mv ~/.cache/nvim{,.bak}
 Clone the repository and move the files to the correct location:
 ```
 git clone https://github.com/t4ichi/dotfiles.git
-mv -f ~/dotfiles/.* ~/tmp
-mv -f ~/dotfiles/* ~/tmp
+mv -f ~/dotfiles/.* ~/
+mv -f ~/dotfiles/* ~/
 rm -rf ~/dotfiles
 ```
 
