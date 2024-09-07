@@ -73,4 +73,10 @@ return {
       require("mini.indentscope").setup()
     end,
   },
+  {
+    "echasnovski/mini.cursorword",
+    config = function(_, opts)
+      require('mini.cursorword').setup(opts)
+    end,
+  },
 }
