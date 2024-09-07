@@ -1,20 +1,8 @@
 return {
   {
     "echasnovski/mini.pairs",
-    event = "VeryLazy",
-    opts = {
-      modes = { insert = true, command = true, terminal = false },
-      -- skip autopair when next character is one of these
-      skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
-      -- skip autopair when the cursor is inside these treesitter nodes
-      skip_ts = { "string" },
-      -- skip autopair when next character is closing pair
-      -- and there are more closing pairs than opening pairs
-      skip_unbalanced = true,
-      -- better deal with markdown code blocks
-      markdown = true,
-    },
     config = function(_, opts)
+      require('mini.pairs').setup(opts)
     end,
   },
   {
@@ -22,34 +10,44 @@ return {
     opts = {
       windows = {
         preview = true,
-        -- Maximum number of windows to show side by side
-        max_number = math.huge,
-        -- Width of focused window
-        width_focus = 50,
-        -- Width of non-focused window
-        width_nofocus = 15,
-        -- Width of preview window
-        width_preview = 60,
       },
       mappings = {
-        go_in = 'l',
-        go_in_plus = 'L',
-        go_out = 'h',
-        go_out_plus = 'H',
-        open_split = 's',
-        open_vsplit = 'v',
-        reset = '<BS>',
+        go_in_plus = "l",
+        go_in = "L",
       },
       options = {
-        use_icons = true,
         follow_current_file = true,
+      },
+      content = {
+        filter = function(file)
+          -- Function to check if a value exists in a table
+          local function table_contains(table, value)
+            for _, v in ipairs(table) do
+              if v == value then
+                return true
+              end
+            end
+            return false
+          end
+
+          -- Files to ignore
+          local ignored_files = {
+            ".DS_Store",
+          }
+
+          -- Split the file path
+          local t = vim.fn.split(file.path, "/")
+          local file_name = t[#t]
+
+          -- Return true if the file is not in the ignored list
+          return not table_contains(ignored_files, file_name)
+        end,
       },
     },
     config = function(_, opts)
       require('mini.files').setup(opts)
 
-      -- Key mappings for toggling and buffers, similar to Neotree
-      vim.keymap.set('n', '<leader>e', ':lua MiniFiles.open()<CR>', { noremap = true, silent = true })
+      vim.keymap.set('n', '<leader>e', ':lua require("mini.files").open()<cr>', { noremap = true, silent = true })
     end,
   },
   {
@@ -59,10 +57,10 @@ return {
     config = function()
       require("mini.comment").setup {
         mappings = {
-          comment = "<Leader>/",
-          comment_line = "<Leader>/",
-          comment_visual = "<Leader>/",
-          textobject = "<Leader>/",
+          comment = "<leader>/",
+          comment_line = "<leader>/",
+          comment_visual = "<leader>/",
+          textobject = "<leader>/",
         },
       }
     end,
