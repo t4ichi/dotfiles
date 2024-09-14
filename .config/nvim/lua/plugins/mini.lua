@@ -14,6 +14,7 @@ return {
       mappings = {
         go_in_plus = "l",
         go_in = "L",
+        close = "q",  -- 追加: qでウィンドウを閉じる
       },
       options = {
         follow_current_file = true,
