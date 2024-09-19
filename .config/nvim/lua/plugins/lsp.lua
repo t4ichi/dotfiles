@@ -1,10 +1,19 @@
 return {
   {
     "williamboman/mason.nvim",
-    build = ":MasonUpdate",
-    config = function()
-      require("mason").setup()
-    end
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.ensure_installed, {
+        "stylua",
+        "selene",
+        "luacheck",
+        "shellcheck",
+        "shfmt",
+        "tailwindcss-language-server",
+        "typescript-language-server",
+        "css-lsp",
+      })
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -17,7 +26,6 @@ return {
       require("mason-lspconfig").setup_handlers({
         function(server_name)
           lspconfig[server_name].setup({
-            -- Add this configuration to enable formatting
             on_attach = function(client, bufnr)
               if client.supports_method("textDocument/formatting") then
                 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -27,11 +35,18 @@ return {
                   end,
                 })
               end
+
+              -- LSP keymaps
+              local opts = { noremap = true, silent = true, buffer = bufnr }
+              vim.keymap.set('n', 'gK', vim.lsp.buf.hover, opts)
+              vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+              vim.keymap.set('n', 'gf', vim.lsp.buf.format, opts)
+              vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
             end,
-            -- You can add more server-specific settings here
           })
         end,
       })
+
       -- Configure diagnostics
       vim.diagnostic.config({
         virtual_text = true,
@@ -67,18 +82,6 @@ return {
       vim.keymap.set('n', '<Leader>ln', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
       vim.keymap.set('n', '<Leader>ll', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
       vim.keymap.set('n', '<Leader>lc', copy_diagnostic_message, { desc = "Copy diagnostic message" })
-      vim.api.nvim_create_autocmd("LspAttach", {
-
-        callback = function()
-          local opts = { noremap = true, silent = true }
-          vim.keymap.set('n', 'gk', '<cmd>lua vim.lsp.buf.hover()<CR>')
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-          vim.keymap.set('n', 'gk', '<cmd>lua vim.lsp.buf.hover()<CR>')
-          vim.keymap.set('n', 'gf', '<cmd>lua vim.lsp.buf.format()<CR>')
-          vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-          vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-        end
-      })
     end
   },
   {
