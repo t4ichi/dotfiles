@@ -12,7 +12,7 @@ return {
         expr = true,
         replace_keycodes = false
       })
-      vim.g.copilot_no_tab_map = true     --   { silent = true, expr = true, script = true, replace_keycodes = false })
+      vim.g.copilot_no_tab_map = true --   { silent = true, expr = true, script = true, replace_keycodes = false })
       keymap("i", "<C-j>", "<Plug>(copilot-next)")
       keymap("i", "<C-k>", "<Plug>(copilot-previous)")
       keymap("i", "<C-o>", "<Plug>(copilot-dismiss)")
@@ -29,7 +29,7 @@ return {
       local user = vim.env.USER or "User"
       user = user:sub(1, 1):upper() .. user:sub(2)
       return {
-        model = "gpt-4o",  -- Set model to gpt-4o
+        model = "gpt-4o", -- Set model to gpt-4o
         auto_insert_mode = true,
         show_help = true,
         question_header = "  " .. user .. " ",
@@ -46,8 +46,8 @@ return {
       }
     end,
     keys = {
-      { "<c-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
-      { "<leader>cc", "", desc = "+ai", mode = { "n", "v" } },
+      { "<c-s>",      "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
+      { "<leader>cc", "",     desc = "+ai",        mode = { "n", "v" } },
       {
         "<leader>cc",
         function()

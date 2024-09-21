@@ -47,23 +47,6 @@ return {
         end,
       })
 
-      -- Configure diagnostics
-      vim.diagnostic.config({
-        virtual_text = true,
-        signs = true,
-        underline = true,
-        update_in_insert = false,
-        severity_sort = true,
-        float = {
-          focusable = true,
-          style = "minimal",
-          border = "rounded",
-          source = "always",
-          header = "",
-          prefix = "",
-        },
-      })
-
       local function copy_diagnostic_message()
         local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
         if #diagnostics > 0 then
@@ -86,48 +69,58 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "saadparwaiz1/cmp_luasnip",
+      "L3MON4D3/LuaSnip",
     },
     config = function()
       local cmp = require("cmp")
-      local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-      end
+      local luasnip = require("luasnip")
 
       cmp.setup({
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
         mapping = cmp.mapping.preset.insert({
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif has_words_before() then
-              cmp.complete()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
+          ['<C-k>'] = cmp.mapping.select_prev_item(),
+          ['<C-j>'] = cmp.mapping.select_next_item(),
         }),
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
+          { name = 'luasnip' },
           { name = 'buffer' },
+          { name = 'path' },
         }),
       })
-    end
+    end,
+  },
+
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+    },
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+
+      local ls = require("luasnip")
+      ls.filetype_extend("typescript", { "javascript" })
+      ls.filetype_extend("typescriptreact", { "typescript", "javascript", "react" })
+
+      -- スニペット展開のキーマップ
+      vim.keymap.set({ "i", "s" }, "<C-k>", function()
+        if ls.expand_or_jumpable() then
+          ls.expand_or_jump()
+        end
+      end, { silent = true })
+    end,
   },
   {
     "jay-babu/mason-null-ls.nvim",
@@ -138,12 +131,5 @@ return {
     config = function()
       require("mason-null-ls").setup()
     end
-  },
-  {
-    "garymjr/nvim-snippets",
-    opts = {
-      friendly_snippets = true,
-    },
-    dependencies = { "rafamadriz/friendly-snippets" },
   },
 }
