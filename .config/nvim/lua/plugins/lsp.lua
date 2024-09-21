@@ -12,59 +12,59 @@ return {
         "tailwindcss-language-server",
         "typescript-language-server",
         "css-lsp",
+        "pyright",                -- Python
+        "rust_analyzer",          -- Rust
+        "gopls",                  -- Go
+        "clangd",                 -- C/C++
+        "jdtls",                  -- Java
+        "kotlin_language_server", -- Kotlin
+        "solargraph",             -- Ruby
+        "eslint-lsp",             -- JavaScript/TypeScript Linting
+        "jsonls",                 -- JSON
+        "yamlls",                 -- YAML
+        "dockerls",               -- Dockerfile
+        "html-lsp",               -- HTML
+        "marksman",               -- Markdown
+        "sqlls",                  -- SQL
+        "rome",                   -- JavaScript/TypeScript/JSON formatter
       })
     end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
-      "williamboman/mason.nvim",
-      "neovim/nvim-lspconfig",
+      { "williamboman/mason.nvim" },
+      { "neovim/nvim-lspconfig" },
+      { "hrsh7th/nvim-cmp" },
     },
     config = function()
       local lspconfig = require("lspconfig")
       require("mason-lspconfig").setup_handlers({
         function(server_name)
-          lspconfig[server_name].setup({
-            on_attach = function(client, bufnr)
-              if client.supports_method("textDocument/formatting") then
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                  buffer = bufnr,
-                  callback = function()
-                    vim.lsp.buf.format({ bufnr = bufnr })
-                  end,
-                })
-              end
-
-              -- LSP keymaps
-              local opts = { noremap = true, silent = true, buffer = bufnr }
-              vim.keymap.set('n', 'gK', vim.lsp.buf.hover, opts)
-              vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-              vim.keymap.set('n', 'gf', vim.lsp.buf.format, opts)
-              vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-            end,
-          })
+          lspconfig[server_name].setup({})
+        end,
+        ["vtsls"] = function()
+          lspconfig["vtsls"].setup({})
         end,
       })
 
-      local function copy_diagnostic_message()
-        local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
-        if #diagnostics > 0 then
-          local message = diagnostics[1].message
-          vim.fn.setreg("+", message) -- Copy to system clipboard
-          vim.fn.setreg('"', message) -- Copy to unnamed register
-          print("Diagnostic message copied to clipboard")
-        else
-          print("No diagnostic message at cursor position")
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(_)
+          vim.keymap.set('n', 'gk', '<cmd>lua vim.lsp.buf.hover()<CR>')
+          vim.keymap.set('n', 'gf', '<cmd>lua vim.lsp.buf.format()<CR>')
+          vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+          vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+          vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+          vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+          vim.keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+          vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.rename()<CR>')
+          vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+          vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>')
+          vim.keymap.set('n', 'gn', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+          vim.keymap.set('n', 'gN', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
         end
-      end
+      })
 
-      -- Diagnostic keymaps using <Leader>
-      vim.keymap.set('n', '<Leader>lf', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-      vim.keymap.set('n', '<Leader>lp', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-      vim.keymap.set('n', '<Leader>ln', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-      vim.keymap.set('n', '<Leader>ll', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
-      vim.keymap.set('n', '<Leader>lc', copy_diagnostic_message, { desc = "Copy diagnostic message" })
     end
   },
   {
@@ -124,12 +124,12 @@ return {
   },
   {
     "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "williamboman/mason.nvim",
       "nvimtools/none-ls.nvim",
     },
     config = function()
-      require("mason-null-ls").setup()
     end
   },
 }

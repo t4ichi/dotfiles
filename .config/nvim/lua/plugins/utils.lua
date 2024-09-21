@@ -21,27 +21,27 @@ return {
       require('Comment').setup()
     end,
   },
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- add any options here
-    },
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-    }
-  },
+  -- {
+  --   "folke/noice.nvim",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     -- add any options here
+  --   },
+  --   dependencies = {
+  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+  --     "MunifTanjim/nui.nvim",
+  --     -- OPTIONAL:
+  --     --   `nvim-notify` is only needed, if you want to use the notification view.
+  --     --   If not available, we use `mini` as the fallback
+  --     "rcarriga/nvim-notify",
+  --   }
+  -- },
   {
     'Wansmer/treesj',
-   keys = { '<space>m', '<space>j', '<space>s' },
+    keys = { '<space>m', '<space>j', '<space>s' },
     dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
     config = function()
-      require('treesj').setup({--[[ your config ]]})
+      require('treesj').setup({ --[[ your config ]] })
     end,
   },
   {
@@ -51,6 +51,13 @@ return {
     build = "cd app && npm install",
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
+    end,
+  },
+  {
+    "smjonas/inc-rename.nvim",
+    config = function()
+      require("inc_rename").setup()
+      vim.keymap.set("n", "<leader>rn", ":IncRename ")
     end,
   }
 }

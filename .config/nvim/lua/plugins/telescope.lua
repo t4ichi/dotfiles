@@ -12,3 +12,4 @@ return {
         vim.api.nvim_set_keymap('n', '<Leader>fb', ':Telescope buffers<cr>', opts)
     end
 }
+
