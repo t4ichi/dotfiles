@@ -16,7 +16,7 @@ vim.api.nvim_set_keymap("", "<C-l>", "$", { noremap = true, silent = true })
 -- edit
 vim.api.nvim_set_keymap("", "x", '"_x', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "dd", '"_dd', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-d>", "dd", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<D>", "dd", { noremap = true, silent = true })
 
 -- buffer
 vim.api.nvim_set_keymap("", "<Leader>w", ":w<CR>", { noremap = true, silent = true })
@@ -25,7 +25,5 @@ vim.api.nvim_set_keymap("n", "<Leader>]", "<Cmd>BufferNext<CR>", { noremap = tru
 vim.api.nvim_set_keymap("n", "<Leader>d", "<Cmd>BufferClose<CR>", { noremap = true, silent = true })
 
 -- window
-vim.api.nvim_set_keymap("n", "<Leader>gh", "<C-w>h", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>gj", "<C-w>j", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>gk", "<C-w>k", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>gl", "<C-w>l", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-w>|", ":vsplit<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-w>-", ":split<CR>", { noremap = true, silent = true })
