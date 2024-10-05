@@ -6,9 +6,22 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
--- カラースキームの設定
+-- local mux = wezterm.mux
+-- wezterm.on("gui-startup", function(cmd)
+--     local tab, pane, window = mux.spawn_window(cmd or {})
+--     window:gui_window():toggle_fullscreen()
+-- end)
+--
+local mux = wezterm.mux
+wezterm.on('gui-startup', function(cmd)
+  local tab, pane, window = mux.spawn_window(cmd or {width=156, height=50})
+  -- window:gui_window():set_position(0,0)
+  -- window:set_inner_size(600, 100)
+end)
+
+config.automatically_reload_config = false
 config.color_scheme = 'AdventureTime'
-config.window_background_opacity = 0.80
+config.window_background_opacity = 0.70
 config.macos_window_background_blur = 20
 config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = true
@@ -18,31 +31,34 @@ config.window_frame = {
   inactive_titlebar_bg = "none",
   active_titlebar_bg = "none",
 }
+
  config.window_background_gradient = {
-   colors = { "#000000" },
+   colors = { "#0D1017" },
  }
+
+config.show_new_tab_button_in_tab_bar = false
+config.use_fancy_tab_bar = false
+
  config.colors = {
    tab_bar = {
      inactive_tab_edge = "none",
    },
  }
- wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-   local background = "#000000"
-   local foreground = "#FFFFFF"
 
-   if tab.is_active then
-     background = "#FFB454"
-     foreground = "#000000"
-   end
-
-   local title = "   " .. wezterm.truncate_right(tab.active_pane.title, max_width - 1) .. "   "
-
-   return {
-     { Background = { Color = background } },
-     { Foreground = { Color = foreground } },
-     { Text = title },
-   }
- end)
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  local background = "#0D1017"
+  local foreground = "#565B66"
+  if tab.is_active then
+    background = "#FFB454"
+    foreground = "#0D1017"
+  end
+  local title = "   " .. wezterm.truncate_right(tab.active_pane.title, max_width - 1) .. "   "
+  return {
+    { Background = { Color = background } },
+    { Foreground = { Color = foreground } },
+    { Text = title },
+  }
+end)
 
 config.keys = {
 }
