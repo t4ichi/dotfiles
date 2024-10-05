@@ -6,21 +6,13 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
--- local mux = wezterm.mux
--- wezterm.on("gui-startup", function(cmd)
---     local tab, pane, window = mux.spawn_window(cmd or {})
---     window:gui_window():toggle_fullscreen()
--- end)
---
 local mux = wezterm.mux
 wezterm.on('gui-startup', function(cmd)
-  local tab, pane, window = mux.spawn_window(cmd or {width=156, height=50})
-  -- window:gui_window():set_position(0,0)
-  -- window:set_inner_size(600, 100)
+  mux.spawn_window(cmd or {width=156, height=46})
 end)
 
 config.automatically_reload_config = false
-config.color_scheme = 'AdventureTime'
+config.color_scheme = 'Ayu Dark (Gogh)'
 config.window_background_opacity = 0.70
 config.macos_window_background_blur = 20
 config.window_decorations = "RESIZE"
@@ -45,7 +37,7 @@ config.use_fancy_tab_bar = false
    },
  }
 
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+wezterm.on("format-tab-title", function(tab,max_width)
   local background = "#0D1017"
   local foreground = "#565B66"
   if tab.is_active then
