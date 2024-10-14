@@ -14,4 +14,6 @@ end
 toggleApp("Google Chrome", "j")
 toggleApp("WezTerm", "k")
 -- toggleApp("Slack", "l")
-toggleApp("Visual Studio Code", "v")
+toggleApp("Visual Studio Code", "h")
+toggleApp("Finder", "f")
+toggleApp("Notion", "n")
