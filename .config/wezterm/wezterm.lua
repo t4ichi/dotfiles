@@ -12,7 +12,7 @@ wezterm.on('gui-startup', function(cmd)
 end)
 
 config.automatically_reload_config = false
-config.color_scheme = 'Ayu Dark (Gogh)'
+config.color_scheme ="my_custom_scheme"
 config.window_background_opacity = 0.70
 config.macos_window_background_blur = 20
 config.window_decorations = "RESIZE"
@@ -31,11 +31,13 @@ config.window_frame = {
 config.show_new_tab_button_in_tab_bar = false
 config.use_fancy_tab_bar = false
 
- config.colors = {
-   tab_bar = {
-     inactive_tab_edge = "none",
-   },
- }
+config.colors = {
+  tab_bar = {
+    inactive_tab_edge = "none",
+  },
+  selection_fg = "#FFFFFF",  -- 白
+  selection_bg = "#4A9EFF",  -- 青
+}
 
 wezterm.on("format-tab-title", function(tab,max_width)
   local background = "#0D1017"
