@@ -35,7 +35,6 @@ return {
     init = function() vim.g.barbar_auto_setup = false end,
     opts = {
     },
-    version = '^1.0.0', -- optional: only update when a new 1.x version is released
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -45,5 +44,19 @@ return {
         --[[add your custom lualine config here]]
       }
     end,
-  },
+    {
+      "folke/noice.nvim",
+      event = "VeryLazy",
+      opts = {
+        -- add any options here
+      },
+      dependencies = {
+        -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+        "MunifTanjim/nui.nvim",
+        -- OPTIONAL:
+        --   `nvim-notify` is only needed, if you want to use the notification view.
+        --   If not available, we use `mini` as the fallback
+        "rcarriga/nvim-notify",
+      }
+    } },
 }
