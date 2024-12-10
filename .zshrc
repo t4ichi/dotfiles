@@ -18,3 +18,6 @@ source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
 # key bindings
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
+
+# Alias
+alias lg='lazygit'
