@@ -22,3 +22,4 @@ bindkey '^N' history-beginning-search-forward
 # Alias
 alias lg='lazygit'
 alias dc='docker-compose'
+alias vi='nvim'
