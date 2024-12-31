@@ -23,8 +23,8 @@ function toggleApp(appName, key)
   end)
 end
 
-toggleApp("Google Chrome", "j")
-toggleApp("WezTerm", "k")
+toggleApp("Arc", "j")
+toggleApp("Ghostty", "k")
 toggleApp("Slack", "l")
 toggleApp("Visual Studio Code", "h")
 toggleApp("Finder", "f")
