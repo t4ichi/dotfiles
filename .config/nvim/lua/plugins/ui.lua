@@ -6,7 +6,6 @@ return {
       require('dashboard').setup {
         theme = 'hyper',
         config = {
-          -- header = vim.split(logo, "\n"),  -- Display the logo
           week_header = {
             enable = true --boolean use a week header
           },
@@ -29,7 +28,7 @@ return {
   {
     'romgrk/barbar.nvim',
     dependencies = {
-      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
       'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
     },
     init = function() vim.g.barbar_auto_setup = false end,
@@ -46,9 +45,11 @@ return {
     end,
     {
       "folke/noice.nvim",
-      event = "VeryLazy",
+      -- event = "VeryLazy",
       opts = {
         -- add any options here
+        -- stages = "static",
+
       },
       dependencies = {
         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -58,5 +59,6 @@ return {
         --   If not available, we use `mini` as the fallback
         "rcarriga/nvim-notify",
       }
-    } },
+    },
+  },
 }
