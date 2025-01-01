@@ -6,10 +6,9 @@ local lsp_servers = {
 	"biome",
 }
 
-local formatters = {
-	"stylua",
+local js_formatters = {
+	"biome-check",
 	"prettier",
-	"biome",
 }
 
 return {
@@ -78,38 +77,34 @@ return {
 			})
 		end,
 	},
-	{
-		"onsails/lspkind.nvim",
-		event = "InsertEnter",
-	},
 	-- formatter
 	{
-		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			"williamboman/mason.nvim",
-			"nvimtools/none-ls.nvim",
-		},
-		config = function()
-			require("mason-null-ls").setup({
-				ensure_installed = formatters,
-				automatic_installation = true,
-				handlers = {},
-			})
-			require("null-ls").setup({
-				sources = {
+		"stevearc/conform.nvim",
+		opts = {
+			format_on_save = {
+				timeout_ms = 500,
+				lsp_format = "fallback",
+			},
+			formatters_by_ft = {
+				lua = { "stylua" },
+				["javascript"] = js_formatters,
+				["javascriptreact"] = js_formatters,
+				["typescript"] = js_formatters,
+				["typescriptreact"] = js_formatters,
+				["json"] = js_formatters,
+				["css"] = js_formatters,
+			},
+			formatters = {
+				biome = {
+					command = "biome",
+					args = {
+						"check",
+						"--write",
+						"--stdin-file-path",
+						"$FILENAME",
+					},
 				},
-			})
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				callback = function()
-					vim.lsp.buf.format({
-						filter = function(client)
-							return client.name == "null-ls"
-						end,
-						timeout_ms = 5000,
-					})
-				end,
-			})
-		end,
+			},
+		},
 	},
-} 
+}
