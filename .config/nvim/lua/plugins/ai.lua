@@ -19,14 +19,13 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "canary",
     cmd = "CopilotChat",
     event = "VeryLazy",
     opts = function()
       local user = vim.env.USER or "User"
       user = user:sub(1, 1):upper() .. user:sub(2)
       return {
-        model = "gpt-4o", -- Set model to gpt-4o
+        model = "gpt-4o",
         auto_insert_mode = true,
         show_help = true,
         question_header = "  " .. user .. " ",

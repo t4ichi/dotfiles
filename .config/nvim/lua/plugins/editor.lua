@@ -1,17 +1,23 @@
 return {
 	{
-	  'nvim-telescope/telescope.nvim',
-	  tag = '0.1.8',
-	  dependencies = { 'nvim-lua/plenary.nvim' },
-	  config = function()
-	    local opts = { noremap = true, silent = true }
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.8",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			local opts = { noremap = true, silent = true }
 
-	    -- Find files including hidden ones
-	    vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files hidden=true<cr>', opts)
+			-- Find files including hidden ones
+			vim.api.nvim_set_keymap("n", "<Leader>ff", ":Telescope find_files hidden=true<cr>", opts)
 
-	    -- List open buffers
-	    vim.api.nvim_set_keymap('n', '<Leader>fb', ':Telescope buffers<cr>', opts)
-	  end
+			-- List open buffers
+			vim.api.nvim_set_keymap("n", "<Leader>fb", ":Telescope buffers<cr>", opts)
+		end,
+	},
+	{
+		"stevearc/dressing.nvim",
+		config = function()
+			require("dressing").setup()
+		end,
 	},
 	{
 		"akinsho/toggleterm.nvim",
@@ -34,7 +40,7 @@ return {
 			mappings = {
 				go_in_plus = "l",
 				go_in = "L",
-				close = "q", -- 追加: qでウィンドウを閉じる
+				close = "q",
 			},
 			options = {
 				follow_current_file = true,
@@ -156,6 +162,43 @@ return {
 		-- order to load the plugin when the command is run for the first time
 		keys = {
 			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+		},
+	},
+	{
+		"folke/trouble.nvim",
+		opts = {}, -- for default options, refer to the configuration section for custom setup.
+		cmd = "Trouble",
+		keys = {
+			{
+				"<leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
+			},
+			{
+				"<leader>xX",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Diagnostics (Trouble)",
+			},
+			{
+				"<leader>cs",
+				"<cmd>Trouble symbols toggle focus=false<cr>",
+				desc = "Symbols (Trouble)",
+			},
+			{
+				"<leader>cl",
+				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
+				"<leader>xL",
+				"<cmd>Trouble loclist toggle<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<leader>xQ",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
+			},
 		},
 	},
 }
