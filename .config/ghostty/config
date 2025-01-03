@@ -14,5 +14,7 @@ macos-titlebar-style = hidden
 # window
 window-padding-x = 0,20
 window-padding-y = 0,20
+window-height = 40
+window-width = 140
 window-padding-balance = true
 
