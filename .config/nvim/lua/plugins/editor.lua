@@ -6,10 +6,7 @@ return {
 		config = function()
 			local opts = { noremap = true, silent = true }
 
-			-- Find files including hidden ones
 			vim.api.nvim_set_keymap("n", "<Leader>ff", ":Telescope find_files hidden=true<cr>", opts)
-
-			-- List open buffers
 			vim.api.nvim_set_keymap("n", "<Leader>fb", ":Telescope buffers<cr>", opts)
 		end,
 	},
@@ -17,18 +14,6 @@ return {
 		"stevearc/dressing.nvim",
 		config = function()
 			require("dressing").setup()
-		end,
-	},
-	{
-		"akinsho/toggleterm.nvim",
-		config = function()
-			require("toggleterm").setup({
-				start_in_insert = true,
-			})
-
-			-- Key mappings should be defined outside the setup function
-			vim.keymap.set("n", "<Leader>tt", ":ToggleTerm direction=float<cr>")
-			vim.keymap.set("t", "<Esc>", "<C-\\><C-n>:ToggleTerm<cr>")
 		end,
 	},
 	{
@@ -92,58 +77,18 @@ return {
 		end,
 	},
 	{
-		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("gitsigns").setup({
-				signs = {
-					add = { text = "┃" },
-					change = { text = "┃" },
-					delete = { text = "_" },
-					topdelete = { text = "‾" },
-					changedelete = { text = "~" },
-					untracked = { text = "┆" },
-				},
-				signs_staged = {
-					add = { text = "┃" },
-					change = { text = "┃" },
-					delete = { text = "_" },
-					topdelete = { text = "‾" },
-					changedelete = { text = "~" },
-					untracked = { text = "┆" },
-				},
-				signs_staged_enable = true,
-				signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-				numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
-				linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
-				word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
-				watch_gitdir = {
-					follow_files = true,
-				},
-				auto_attach = true,
-				attach_to_untracked = false,
-				current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-				current_line_blame_opts = {
-					virt_text = true,
-					virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-					delay = 1000,
-					ignore_whitespace = false,
-					virt_text_priority = 100,
-				},
-				current_line_blame_formatter = "<author>, <author_time:%R> - <summary>",
-				sign_priority = 6,
-				update_debounce = 100,
-				status_formatter = nil, -- Use default
-				max_file_length = 40000, -- Disable if file is longer than this (in lines)
-				preview_config = {
-					-- Options passed to nvim_open_win
-					border = "single",
-					style = "minimal",
-					relative = "cursor",
-					row = 0,
-					col = 1,
-				},
-			})
-		end,
+		"echasnovski/mini.diff",
+		event = "VeryLazy",
+		opts = {},
+		keys = {
+			{
+				"<leader>go",
+				function()
+					require("mini.diff").toggle_overlay(0)
+				end,
+				desc = "Toggle mini.diff overlay",
+			},
+		},
 	},
 	{
 		"kdheepak/lazygit.nvim",
@@ -154,19 +99,16 @@ return {
 			"LazyGitFilter",
 			"LazyGitFilterCurrentFile",
 		},
-		-- optional for floating window border decoration
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
-		-- setting the keybinding for LazyGit with 'keys' is recommended in
-		-- order to load the plugin when the command is run for the first time
 		keys = {
 			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
 		},
 	},
 	{
 		"folke/trouble.nvim",
-		opts = {}, -- for default options, refer to the configuration section for custom setup.
+		opts = {},
 		cmd = "Trouble",
 		keys = {
 			{
@@ -183,6 +125,30 @@ return {
 				"<leader>cs",
 				"<cmd>Trouble symbols toggle focus=false<cr>",
 				desc = "Symbols (Trouble)",
+			},
+		},
+	},
+	{
+		"sindrets/diffview.nvim",
+		opts = {},
+		keys = {
+			{ "<leader>ho", "<cmd>DiffviewOpen HEAD~1<CR>", desc = "Open DiffView against HEAD~1" },
+			{ "<leader>hh", "<cmd>DiffviewFileHistory<CR>", desc = "Open DiffView File History" },
+			{ "<leader>hc", "<cmd>DiffviewClose<CR>", desc = "Close DiffView" },
+			{
+				"<leader>hm",
+				"<cmd>DiffviewOpen origin/main...HEAD<CR>",
+				desc = "Open DiffView against origin/main...HEAD",
+			},
+			{
+				"<leader>hd",
+				"<cmd>DiffviewOpen origin/develop...HEAD<CR>",
+				desc = "Open DiffView against origin/develop...HEAD",
+			},
+			{
+				"<leader>hf",
+				"<cmd>DiffviewOpen origin/develop/frontend...HEAD<CR>",
+				desc = "Open DiffView against origin/develop/frontend...HEAD",
 			},
 		},
 	},
