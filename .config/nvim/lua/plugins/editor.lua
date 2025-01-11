@@ -4,10 +4,20 @@ return {
 		tag = "0.1.8",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
-			local opts = { noremap = true, silent = true }
+			require("telescope").setup({
+				defaults = {
+					file_ignore_patterns = {
+						"node_modules/",
+						"%.git/",
+					},
+				},
+			})
 
-			vim.api.nvim_set_keymap("n", "<Leader>ff", ":Telescope find_files hidden=true<cr>", opts)
-			vim.api.nvim_set_keymap("n", "<Leader>fb", ":Telescope buffers<cr>", opts)
+			local builtin = require("telescope.builtin")
+			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 		end,
 	},
 	{
@@ -29,6 +39,7 @@ return {
 			},
 			options = {
 				follow_current_file = true,
+				use_as_default_explorer = true,
 			},
 			content = {
 				filter = function(file)
@@ -58,8 +69,12 @@ return {
 		},
 		config = function(_, opts)
 			require("mini.files").setup(opts)
-
-			vim.keymap.set("n", "<leader>e", ':lua require("mini.files").open()<cr>', { noremap = true, silent = true })
+			vim.keymap.set(
+				"n",
+				"<leader>e",
+				':lua require("mini.files").open(vim.api.nvim_buf_get_name(0))<cr>',
+				{ noremap = true, silent = true }
+			)
 		end,
 	},
 	{
@@ -147,8 +162,8 @@ return {
 			},
 			{
 				"<leader>hf",
-				"<cmd>DiffviewOpen origin/develop/frontend...HEAD<CR>",
-				desc = "Open DiffView against origin/develop/frontend...HEAD",
+				"<cmd>DiffviewOpen origin/frontend...HEAD<CR>",
+				desc = "Open DiffView against origin/frontend...HEAD",
 			},
 		},
 	},
