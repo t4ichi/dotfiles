@@ -44,26 +44,38 @@ return {
 				--[[add your custom lualine config here]]
 			}
 		end,
-		{
-			"folke/noice.nvim",
-			event = "VeryLazy",
-			opts = {
-				-- add any options here
-				stages = "static",
+	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
+		keys = {
+			{
+				"<leader>nh",
+				"<cmd>NoiceHistory<cr>",
+				desc = "NoiceHistory",
 			},
-			dependencies = {
-				-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-				"MunifTanjim/nui.nvim",
-				-- OPTIONAL:
-				--   `nvim-notify` is only needed, if you want to use the notification view.
-				--   If not available, we use `mini` as the fallback
-				"rcarriga/nvim-notify",
+		},
+		opts = {
+			stages = "static",
+			presets = {
+				lsp_doc_border = true,
 			},
-			keys = {
-				{
-					"<leader>nh",
-					"<cmd>NoiceHistory<cr>",
-					desc = "NoiceHistory",
+			lsp = {
+				override = {
+					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+					["vim.lsp.util.stylize_markdown"] = true,
+					["cmp.entry.get_documentation"] = true,
+				},
+				hover = {
+					enabled = true,
+					border = {
+						style = "rounded",
+						padding = { 0, 1 },
+					},
 				},
 			},
 		},
