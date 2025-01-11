@@ -4,11 +4,14 @@ local lsp_servers = {
 	"html",
 	"cssls",
 	"biome",
+	"eslint",
+	"jsonls",
 }
 
 local js_formatters = {
 	"biome-check",
 	"prettier",
+	"shfmt",
 }
 
 return {
@@ -62,8 +65,6 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
-			"saadparwaiz1/cmp_luasnip",
-			"L3MON4D3/LuaSnip",
 		},
 		event = { "InsertEnter", "CmdlineEnter" },
 		config = function()
@@ -71,6 +72,8 @@ return {
 			vim.opt.completeopt = { "menu", "menuone" }
 			cmp.setup({
 				sources = {
+					{ name = "nvim_lsp" },
+					{ name = "nvim_lua" },
 					{ name = "buffer" },
 					{ name = "path" },
 				},
