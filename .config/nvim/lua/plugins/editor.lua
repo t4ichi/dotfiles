@@ -1,5 +1,18 @@
 return {
 	{
+		"simonmclean/triptych.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"antosha417/nvim-lsp-file-operations",
+		},
+		opts = {},
+		keys = {
+			{ "<leader>e", ":Triptych<CR>" },
+		},
+	},
+	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -24,57 +37,6 @@ return {
 		"stevearc/dressing.nvim",
 		config = function()
 			require("dressing").setup()
-		end,
-	},
-	{
-		"echasnovski/mini.files",
-		opts = {
-			windows = {
-				preview = true,
-			},
-			mappings = {
-				go_in_plus = "l",
-				go_in = "L",
-				close = "q",
-			},
-			options = {
-				follow_current_file = true,
-				use_as_default_explorer = true,
-			},
-			content = {
-				filter = function(file)
-					-- Function to check if a value exists in a table
-					local function table_contains(table, value)
-						for _, v in ipairs(table) do
-							if v == value then
-								return true
-							end
-						end
-						return false
-					end
-
-					-- Files to ignore
-					local ignored_files = {
-						".DS_Store",
-					}
-
-					-- Split the file path
-					local t = vim.fn.split(file.path, "/")
-					local file_name = t[#t]
-
-					-- Return true if the file is not in the ignored list
-					return not table_contains(ignored_files, file_name)
-				end,
-			},
-		},
-		config = function(_, opts)
-			require("mini.files").setup(opts)
-			vim.keymap.set(
-				"n",
-				"<leader>e",
-				':lua require("mini.files").open(vim.api.nvim_buf_get_name(0))<cr>',
-				{ noremap = true, silent = true }
-			)
 		end,
 	},
 	{
