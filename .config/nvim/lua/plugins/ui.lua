@@ -95,4 +95,12 @@ return {
 			end,
 		},
 	},
+	{
+		"norcalli/nvim-colorizer.lua",
+		event = { "BufReadPost", "BufNewFile" },
+		cmd = { "ColorizerToggle" },
+		opts = {
+			"*",
+		},
+	},
 }
