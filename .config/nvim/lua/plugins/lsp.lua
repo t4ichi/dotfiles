@@ -6,6 +6,7 @@ local lsp_servers = {
 	"biome",
 	"eslint",
 	"jsonls",
+	"typos_lsp",
 }
 
 local js_formatters = {
@@ -36,6 +37,12 @@ return {
 					lspconfig[server_name].setup({})
 				end,
 			})
+			-- typo lsp
+			lspconfig.typos_lsp.setup({
+				init_options = {
+					diagnosticSeverity = "Warning",
+				},
+			})
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(_)
@@ -64,6 +71,8 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"hrsh7th/cmp-emoji",
 			"saadparwaiz1/cmp_luasnip",
 			"L3MON4D3/LuaSnip",
 			"rafamadriz/friendly-snippets",
@@ -125,9 +134,11 @@ return {
 				sources = {
 					{ name = "luasnip" },
 					{ name = "nvim_lsp" },
+					{ name = "nvim_lsp_signature_help" },
 					{ name = "nvim_lua" },
 					{ name = "buffer" },
 					{ name = "path" },
+					{ name = "emoji" },
 				},
 				formatting = {
 					format = lspkind.cmp_format({
