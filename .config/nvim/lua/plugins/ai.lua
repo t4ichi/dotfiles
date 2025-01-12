@@ -1,122 +1,136 @@
 return {
-  {
-    "github/copilot.vim",
-    lazy = false,
-    config = function()
-      vim.g.copilot_filetypes = { yaml = true }
-      local keymap = vim.keymap.set
-      vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
-        expr = true,
-        replace_keycodes = false
-      })
-      vim.g.copilot_no_tab_map = true --   { silent = true, expr = true, script = true, replace_keycodes = false })
-      keymap("i", "<C-j>", "<Plug>(copilot-next)")
-      keymap("i", "<C-k>", "<Plug>(copilot-previous)")
-      keymap("i", "<C-o>", "<Plug>(copilot-dismiss)")
-      keymap("i", "<C-s>", "<Plug>(copilot-suggest)")
-      keymap('i', '<C-L>', '<Plug>(copilot-accept-word)')
-    end
-  },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    cmd = "CopilotChat",
-    event = "VeryLazy",
-    opts = function()
-      local user = vim.env.USER or "User"
-      user = user:sub(1, 1):upper() .. user:sub(2)
-      return {
-        model = "gpt-4o",
-        auto_insert_mode = true,
-        show_help = true,
-        question_header = "  " .. user .. " ",
-        answer_header = "  Copilot ",
-        window = {
-          layout = 'float',
-          width = 0.8,
-          height = 0.8,
-        },
-        selection = function(source)
-          local select = require("CopilotChat.select")
-          return select.visual(source) or select.buffer(source)
-        end,
-        chat_autocomplete = true
-      }
-    end,
-    keys = {
-      { "<c-s>",      "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
-      { "<leader>cc", "",     desc = "+ai",        mode = { "n", "v" } },
-      {
-        "<leader>cc",
-        function()
-          return require("CopilotChat").toggle()
-        end,
-        desc = "Toggle (CopilotChat)",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>ccx",
-        function()
-          return require("CopilotChat").reset()
-        end,
-        desc = "Clear (CopilotChat)",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>ccq",
-        function()
-          local input = vim.fn.input("Quick Chat: ")
-          if input ~= "" then
-            require("CopilotChat").ask(input)
-          end
-        end,
-        desc = "Quick Chat (CopilotChat)",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>cct",
-        function()
-          return require("CopilotChat").toggle()
-        end,
-        desc = "Toggle CopilotChat",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>cce",
-        function()
-          return require("CopilotChat").explain()
-        end,
-        desc = "Explain with CopilotChat",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>ccr",
-        function()
-          return require("CopilotChat").review()
-        end,
-        desc = "Review with CopilotChat",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>ccf",
-        function()
-          return require("CopilotChat").fix()
-        end,
-        desc = "Fix with CopilotChat",
-        mode = { "n", "v" },
-      },
-    },
-    config = function(_, opts)
-      local chat = require("CopilotChat")
-
-      vim.api.nvim_create_autocmd("BufEnter", {
-        pattern = "copilot-chat",
-        callback = function()
-          vim.opt_local.relativenumber = false
-          vim.opt_local.number = false
-        end,
-      })
-
-      chat.setup(opts)
-    end,
- }
+	{
+		"github/copilot.vim",
+		event = "insertenter",
+		keys = {
+			{ "<C-j>", "<Plug>(copilot-next)", desc = "Copilot Next Suggestion", mode = { "i" } },
+			{ "<C-k>", "<Plug>(copilot-previous)", desc = "Copilot Previous Suggestion", mode = { "i" } },
+			{ "<C-h>", "<Plug>(copilot-dismiss)", desc = "Copilot Dismiss Suggestion", mode = { "i" } },
+			{ "<C-l>", "<Plug>(copilot-accept-word)", desc = "Copilot Accept Word", mode = { "i" } },
+			{ "<C-s>", "<Plug>(copilot-suggest)", desc = "Copilot Suggest", mode = { "i" } },
+			{ "<C-a>", "<Plug>(copilot-accept-line)", desc = "Copilot Accept Line", mode = { "i" } },
+		},
+	},
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+			{ "nvim-lua/plenary.nvim", branch = "master" },
+			{ "nvim-telescope/telescope.nvim" },
+		},
+		build = "make tiktoken", -- Only on MacOS or Linux
+		opts = {
+			show_help = true,
+			question_header = "  User ",
+			answer_header = "  Copilot ",
+			prompts = {
+				Explain = {
+					prompt = "> /COPILOT_EXPLAIN\n\n選択されたコードの機能と動作を詳細に説明してください。以下の点に触れてください：\n"
+						.. "- コードの主な目的\n"
+						.. "- 使用されているアルゴリズムや手法\n"
+						.. "- 重要な変数や関数の役割\n"
+						.. "段落形式で、技術的な正確性を保ちながら分かりやすく説明してください。",
+				},
+				Review = {
+					prompt = "> /COPILOT_REVIEW\n\n以下の観点からコードレビューを行ってください：\n"
+						.. "- コードの品質（可読性、保守性）\n"
+						.. "- 命名規則の改善\n"
+						.. "- パフォーマンスの考慮点\n"
+						.. "- セキュリティリスク\n"
+						.. "- ベストプラクティスの適用\n"
+						.. "改善点がある場合は、具体的な提案を含めてください。",
+				},
+				Fix = {
+					prompt = "> /COPILOT_GENERATE\n\nこのコードの問題点を修正してください。\n"
+						.. "修正後のコードを提示し、以下も含めてください：\n"
+						.. "- 特定された問題の説明\n"
+						.. "- 修正内容とその理由\n"
+						.. "- 修正による影響範囲",
+				},
+				Optimize = {
+					prompt = "> /COPILOT_GENERATE\n\n選択されたコードのパフォーマンスと可読性を改善してください。\n"
+						.. "以下の点を考慮してください：\n"
+						.. "- 実行速度の最適化\n"
+						.. "- メモリ使用量の効率化\n"
+						.. "- コードの構造化と整理\n"
+						.. "最適化前後のコードを比較し、改善点を説明してください。",
+				},
+				Docs = {
+					prompt = "> /COPILOT_GENERATE\n\n選択されたコードにドキュメントコメントを追加してください。\n"
+						.. "以下の要素を含めてください：\n"
+						.. "- 関数/クラスの目的と動作\n"
+						.. "- パラメータの説明\n"
+						.. "- 戻り値の説明\n"
+						.. "- 使用例\n"
+						.. "- 注意事項（該当する場合）",
+				},
+				Tests = {
+					prompt = "> /COPILOT_GENERATE\n\n選択されたコードのテストコードを生成してください。\n"
+						.. "以下のテストケースを含めてください：\n"
+						.. "- 正常系のテスト\n"
+						.. "- エッジケース\n"
+						.. "- エラー処理のテスト\n"
+						.. "テストフレームワークのベストプラクティスに従い、テストの目的も説明してください。",
+				},
+				Commit = {
+					prompt = "> #git:staged\n\n"
+						.. "以下の形式で日本語のコミットメッセージを生成してください：\n"
+						.. "形式: <Prefix>: <理由>、<変更内容>\n\n"
+						.. "要件：\n"
+						.. "1. Prefix（必須）は以下から選択：\n"
+						.. "   - feat: 新しい機能\n"
+						.. "   - fix: バグの修正\n"
+						.. "   - docs: ドキュメントのみの変更\n"
+						.. "   - style: 空白、フォーマット、セミコロン追加など\n"
+						.. "   - refactor: 仕様に影響がないコード改善(リファクタ)\n"
+						.. "   - perf: パフォーマンス向上関連\n"
+						.. "   - test: テスト関連\n"
+						.. "   - chore: ビルド、補助ツール、ライブラリ関連\n\n"
+						.. "2. メッセージの構成：\n"
+						.. "   - 「〇〇なため、△△を追加/修正/変更」の形式\n"
+						.. "   - 理由（なぜその変更が必要か）を必ず含める\n"
+						.. "   - 変更内容は具体的に記述\n\n"
+						.. "3. 記述のポイント：\n"
+						.. "   - コードレビューがしやすいように具体的に\n"
+						.. "   - 変更の意図が明確に伝わるように\n"
+						.. "   - 将来のメンテナンスを考慮した説明を含める\n\n"
+						.. "メッセージは gitcommit コードブロックで囲んでください。\n",
+				},
+			},
+		},
+		keys = {
+			{
+				"<leader>cc",
+				":CopilotChatToggle<CR>",
+				desc = "Toggle (CopilotChat)",
+				mode = { "n", "v" },
+			},
+			{
+				"<leader>cx",
+				":CopilotChatReset<CR>",
+				desc = "Clear (CopilotChat)",
+				mode = { "n", "v" },
+			},
+			{
+				"<leader>cq",
+				function()
+					local input = vim.fn.input("Quick Chat: ")
+					if input ~= "" then
+						require("CopilotChat").ask(input)
+					end
+				end,
+				desc = "Quick Chat (CopilotChat)",
+				mode = { "n", "v" },
+			},
+			{
+				"<leader>cp",
+				function()
+					local actions = require("CopilotChat.actions")
+					require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+				end,
+				desc = "CopilotChat - Prompt actions",
+			},
+		},
+	},
 }

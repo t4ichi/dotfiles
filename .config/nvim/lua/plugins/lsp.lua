@@ -142,7 +142,6 @@ return {
 				},
 				formatting = {
 					format = lspkind.cmp_format({
-						mode = "symbol",
 						maxwidth = {
 							menu = 50,
 							abbr = 50,
@@ -187,6 +186,7 @@ return {
 			},
 		},
 	},
+	-- rename path
 	{
 		"antosha417/nvim-lsp-file-operations",
 		dependencies = {
