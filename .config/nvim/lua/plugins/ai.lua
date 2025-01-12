@@ -1,11 +1,11 @@
 return {
 	{
 		"github/copilot.vim",
-		event = "insertenter",
+		event = "insertEnter",
 		keys = {
 			{ "<C-j>", "<Plug>(copilot-next)", desc = "Copilot Next Suggestion", mode = { "i" } },
 			{ "<C-k>", "<Plug>(copilot-previous)", desc = "Copilot Previous Suggestion", mode = { "i" } },
-			{ "<C-h>", "<Plug>(copilot-dismiss)", desc = "Copilot Dismiss Suggestion", mode = { "i" } },
+			{ "<C-o>", "<Plug>(copilot-dismiss)", desc = "Copilot Dismiss Suggestion", mode = { "i" } },
 			{ "<C-l>", "<Plug>(copilot-accept-word)", desc = "Copilot Accept Word", mode = { "i" } },
 			{ "<C-s>", "<Plug>(copilot-suggest)", desc = "Copilot Suggest", mode = { "i" } },
 			{ "<C-a>", "<Plug>(copilot-accept-line)", desc = "Copilot Accept Line", mode = { "i" } },
