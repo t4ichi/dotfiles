@@ -72,3 +72,5 @@ vim.opt.matchtime = 1
 vim.opt.clipboard = "unnamedplus"
 
 vim.opt.conceallevel = 2
+
+vim.opt.splitright = true
