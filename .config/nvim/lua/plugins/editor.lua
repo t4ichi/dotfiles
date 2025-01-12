@@ -60,33 +60,6 @@ return {
 		},
 	},
 	{
-		"stevearc/dressing.nvim",
-		opts = {},
-	},
-	{
-		"echasnovski/mini.cursorword",
-		opts = {},
-	},
-	{
-		"echasnovski/mini.indentscope",
-		event = { "BufReadPre", "BufNewFile" },
-		opts = {},
-	},
-	{
-		"echasnovski/mini.diff",
-		event = "VeryLazy",
-		opts = {},
-		keys = {
-			{
-				"<leader>go",
-				function()
-					require("mini.diff").toggle_overlay(0)
-				end,
-				desc = "Toggle mini.diff overlay",
-			},
-		},
-	},
-	{
 		"kdheepak/lazygit.nvim",
 		cmd = {
 			"LazyGit",

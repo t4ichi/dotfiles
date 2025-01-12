@@ -82,6 +82,33 @@ return {
 		},
 	},
 	{
+		"stevearc/dressing.nvim",
+		opts = {},
+	},
+	{
+		"echasnovski/mini.cursorword",
+		opts = {},
+	},
+	{
+		"echasnovski/mini.indentscope",
+		event = { "BufReadPre", "BufNewFile" },
+		opts = {},
+	},
+	{
+		"echasnovski/mini.diff",
+		event = "VeryLazy",
+		opts = {},
+		keys = {
+			{
+				"<leader>go",
+				function()
+					require("mini.diff").toggle_overlay(0)
+				end,
+				desc = "Toggle mini.diff overlay",
+			},
+		},
+	},
+	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
 		opts = {
