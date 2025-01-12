@@ -193,8 +193,6 @@ return {
 			"nvim-lua/plenary.nvim",
 			"simonmclean/triptych.nvim",
 		},
-		config = function()
-			require("lsp-file-operations").setup()
-		end,
+		opts = {},
 	},
 }

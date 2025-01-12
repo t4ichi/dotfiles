@@ -16,42 +16,61 @@ return {
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("telescope").setup({
-				defaults = {
-					file_ignore_patterns = {
-						"node_modules/",
-						"%.git/",
-					},
+		opts = {
+			defaults = {
+				file_ignore_patterns = {
+					"node_modules/",
+					"%.git/",
 				},
-			})
-
-			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
-			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
-			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
-		end,
+			},
+		},
+		keys = {
+			{
+				"<leader>ff",
+				function()
+					require("telescope.builtin").find_files()
+				end,
+				desc = "Telescope find files",
+				mode = "n",
+			},
+			{
+				"<leader>fg",
+				function()
+					require("telescope.builtin").live_grep()
+				end,
+				desc = "Telescope live grep",
+				mode = "n",
+			},
+			{
+				"<leader>fb",
+				function()
+					require("telescope.builtin").buffers()
+				end,
+				desc = "Telescope buffers",
+				mode = "n",
+			},
+			{
+				"<leader>fh",
+				function()
+					require("telescope.builtin").help_tags()
+				end,
+				desc = "Telescope help tags",
+				mode = "n",
+			},
+		},
 	},
 	{
 		"stevearc/dressing.nvim",
-		config = function()
-			require("dressing").setup()
-		end,
+		opts = {},
 	},
 	{
 		"echasnovski/mini.cursorword",
-		config = function(_, opts)
-			require("mini.cursorword").setup(opts)
-		end,
+		opts = {},
 	},
 	{
 		"echasnovski/mini.indentscope",
-		version = false,
 		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("mini.indentscope").setup()
-		end,
+		opts = {},
 	},
 	{
 		"echasnovski/mini.diff",
@@ -99,7 +118,7 @@ return {
 				desc = "Buffer Diagnostics (Trouble)",
 			},
 			{
-				"<leader>cs",
+				"<leader>xs",
 				"<cmd>Trouble symbols toggle focus=false<cr>",
 				desc = "Symbols (Trouble)",
 			},

@@ -2,34 +2,32 @@ return {
 	{
 		"nvimdev/dashboard-nvim",
 		event = "VimEnter",
-		config = function()
-			require("dashboard").setup({
-				theme = "hyper",
-				config = {
-					week_header = {
-						enable = true, --boolean use a week header
-					},
-					shortcut = {
-						{ desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
-						{
-							icon = " ",
-							icon_hl = "@variable",
-							desc = "Files",
-							group = "Label",
-							action = "Telescope find_files",
-							key = "f",
-						},
+		opts = {
+			theme = "hyper",
+			config = {
+				week_header = {
+					enable = true, --boolean use a week header
+				},
+				shortcut = {
+					{ desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
+					{
+						icon = " ",
+						icon_hl = "@variable",
+						desc = "Files",
+						group = "Label",
+						action = "Telescope find_files",
+						key = "f",
 					},
 				},
-			})
-		end,
+			},
+		},
 		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
 	{
 		"romgrk/barbar.nvim",
 		dependencies = {
-			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
-			"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
+			"lewis6991/gitsigns.nvim",
+			"nvim-tree/nvim-web-devicons",
 		},
 		init = function()
 			vim.g.barbar_auto_setup = false
@@ -39,11 +37,7 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
-		opts = function()
-			return {
-				--[[add your custom lualine config here]]
-			}
-		end,
+		opts = {},
 	},
 	{
 		"folke/noice.nvim",
@@ -51,13 +45,6 @@ return {
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 			"rcarriga/nvim-notify",
-		},
-		keys = {
-			{
-				"<leader>nh",
-				"<cmd>NoiceHistory<cr>",
-				desc = "NoiceHistory",
-			},
 		},
 		opts = {
 			stages = "static",
@@ -77,6 +64,13 @@ return {
 						padding = { 0, 1 },
 					},
 				},
+			},
+		},
+		keys = {
+			{
+				"<leader>nh",
+				"<cmd>NoiceHistory<cr>",
+				desc = "NoiceHistory",
 			},
 		},
 	},
@@ -102,10 +96,8 @@ return {
 					path = ".",
 				},
 			},
-
 			follow_url_func = function(url)
-				-- Open the URL in the default web browser.
-				vim.fn.jobstart({ "open", url }) -- Mac OS
+				vim.fn.jobstart({ "open", url })
 			end,
 		},
 	},
