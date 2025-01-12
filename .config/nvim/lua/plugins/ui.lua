@@ -64,6 +64,13 @@ return {
 						padding = { 0, 1 },
 					},
 				},
+				signature = {
+					enabled = true,
+					border = {
+						style = "rounded",
+						padding = { 0, 1 },
+					},
+				},
 			},
 		},
 		keys = {

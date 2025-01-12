@@ -44,6 +44,12 @@ return {
 				},
 			})
 
+			vim.diagnostic.config({
+				float = {
+					border = "rounded",
+				},
+			})
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(_)
 					vim.keymap.set("n", "gk", "<cmd>lua vim.lsp.buf.hover()<CR>")
