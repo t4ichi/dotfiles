@@ -16,6 +16,7 @@ return {
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
 		dependencies = { "nvim-lua/plenary.nvim" },
+		event = "VeryLazy",
 		opts = {
 			defaults = {
 				file_ignore_patterns = {
@@ -61,6 +62,7 @@ return {
 	},
 	{
 		"kdheepak/lazygit.nvim",
+		event = "VeryLazy",
 		cmd = {
 			"LazyGit",
 			"LazyGitConfig",
@@ -77,6 +79,7 @@ return {
 	},
 	{
 		"folke/trouble.nvim",
+		event = "VeryLazy",
 		opts = {},
 		cmd = "Trouble",
 		keys = {
@@ -99,6 +102,7 @@ return {
 	},
 	{
 		"sindrets/diffview.nvim",
+		event = "VeryLazy",
 		opts = {},
 		keys = {
 			{ "<leader>ho", "<cmd>DiffviewOpen HEAD~1<CR>", desc = "Open DiffView against HEAD~1" },

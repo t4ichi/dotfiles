@@ -25,6 +25,7 @@ return {
 	},
 	{
 		"windwp/nvim-ts-autotag",
+		event = "VeryLazy",
 		opts = {
 			filetypes = { "html", "xml", "javascript", "javascriptreact", "typescriptreact", "svelte", "vue" },
 			skip_tags = {

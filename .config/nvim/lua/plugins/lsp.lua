@@ -17,6 +17,7 @@ local js_formatters = {
 return {
 	{
 		"williamboman/mason.nvim",
+		event = "VeryLazy",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
 			"neovim/nvim-lspconfig",
@@ -71,6 +72,7 @@ return {
 	-- cmp
 	{
 		"hrsh7th/nvim-cmp",
+		event = "VeryLazy",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
@@ -165,6 +167,7 @@ return {
 	-- formatter
 	{
 		"stevearc/conform.nvim",
+		event = "VeryLazy",
 		opts = {
 			format_on_save = {
 				timeout_ms = 500,
@@ -195,6 +198,7 @@ return {
 	-- rename path
 	{
 		"antosha417/nvim-lsp-file-operations",
+		event = "VeryLazy",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"simonmclean/triptych.nvim",

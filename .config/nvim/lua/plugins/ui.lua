@@ -25,6 +25,7 @@ return {
 	},
 	{
 		"romgrk/barbar.nvim",
+		event = "VeryLazy",
 		dependencies = {
 			"lewis6991/gitsigns.nvim",
 			"nvim-tree/nvim-web-devicons",
@@ -83,10 +84,12 @@ return {
 	},
 	{
 		"stevearc/dressing.nvim",
+		event = "VeryLazy",
 		opts = {},
 	},
 	{
 		"echasnovski/mini.cursorword",
+		event = "VeryLazy",
 		opts = {},
 	},
 	{
@@ -110,6 +113,7 @@ return {
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
+		event = "VeryLazy",
 		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
 		opts = {
 			file_types = { "markdown", "copilot-chat" },
@@ -118,7 +122,7 @@ return {
 	{
 		"epwalsh/obsidian.nvim",
 		version = "*",
-		lazy = true,
+		event = "VeryLazy",
 		ft = "markdown",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
