@@ -15,11 +15,11 @@ return {
 		"CopilotC-Nvim/CopilotChat.nvim",
 		event = "VeryLazy",
 		dependencies = {
-			{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+			{ "github/copilot.vim" },
 			{ "nvim-lua/plenary.nvim", branch = "master" },
 			{ "nvim-telescope/telescope.nvim" },
 		},
-		build = "make tiktoken", -- Only on MacOS or Linux
+		build = "make tiktoken",
 		opts = {
 			show_help = true,
 			question_header = "  User ",
@@ -98,17 +98,23 @@ return {
 						.. "メッセージは gitcommit コードブロックで囲んでください。\n",
 				},
 			},
+			mappings = {
+				reset = {
+					normal = "<C-x>",
+					insert = "<C-x>",
+				},
+			},
 		},
 		keys = {
 			{
 				"<leader>cc",
-				":CopilotChatToggle<CR>",
+				"<cmd>CopilotChatToggle<CR>",
 				desc = "Toggle (CopilotChat)",
 				mode = { "n", "v" },
 			},
 			{
 				"<leader>cx",
-				":CopilotChatReset<CR>",
+				"<cmd>CopilotChatReset<CR>",
 				desc = "Clear (CopilotChat)",
 				mode = { "n", "v" },
 			},
@@ -130,6 +136,11 @@ return {
 					require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
 				end,
 				desc = "CopilotChat - Prompt actions",
+			},
+			{
+				"<leader>cm",
+				"<cmd>CopilotChatModels<CR>",
+				desc = "CopilotChat - Models",
 			},
 		},
 	},
