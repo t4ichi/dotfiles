@@ -1,6 +1,9 @@
 # color 
 theme = ayu
 
+# font
+font-family = BerkeleyMono Nerd Font
+ 
 # option
 macos-option-as-alt = true 
 
