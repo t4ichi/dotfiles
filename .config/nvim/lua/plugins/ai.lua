@@ -1,7 +1,10 @@
 return {
 	{
 		"github/copilot.vim",
-		event = "insertEnter",
+		event = {
+			"CmdlineEnter",
+			"InsertEnter",
+		},
 		keys = {
 			{ "<C-j>", "<Plug>(copilot-next)", desc = "Copilot Next Suggestion", mode = { "i" } },
 			{ "<C-k>", "<Plug>(copilot-previous)", desc = "Copilot Previous Suggestion", mode = { "i" } },
