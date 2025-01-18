@@ -145,5 +145,22 @@ return {
 		opts = {
 			"*",
 		},
+		{
+			"vinnymeller/swagger-preview.nvim",
+			cmd = { "SwaggerPreview", "SwaggerPreviewStop", "SwaggerPreviewToggle" },
+			build = "npm i",
+			config = true,
+			opts = {
+				port = 8000,
+				host = "localhost",
+			},
+			keys = {
+				{
+					"<leader>sp",
+					"<cmd>SwaggerPreview<cr>",
+					desc = "SwaggerPreview",
+				},
+			},
+		},
 	},
 }
