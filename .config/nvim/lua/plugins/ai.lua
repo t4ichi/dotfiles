@@ -10,6 +10,12 @@ return {
 			{ "<C-s>", "<Plug>(copilot-suggest)", desc = "Copilot Suggest", mode = { "i" } },
 			{ "<C-a>", "<Plug>(copilot-accept-line)", desc = "Copilot Accept Line", mode = { "i" } },
 		},
+		config = function()
+			if os.getenv("http_proxy") ~= nil then
+				local proxy_url = os.getenv("http_proxy")
+				vim.g.copilot_proxy = proxy_url
+			end
+		end,
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
