@@ -17,7 +17,7 @@ local js_formatters = {
 return {
 	{
 		"williamboman/mason.nvim",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
 			"neovim/nvim-lspconfig",
@@ -166,7 +166,7 @@ return {
 	-- formatter
 	{
 		"stevearc/conform.nvim",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		opts = {
 			format_on_save = {
 				timeout_ms = 500,
@@ -197,7 +197,7 @@ return {
 	-- rename path
 	{
 		"antosha417/nvim-lsp-file-operations",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"simonmclean/triptych.nvim",

@@ -1,16 +1,17 @@
 return {
 	{
 		"echasnovski/mini.pairs",
-		event = "VeryLazy",
+		event = "InsertEnter",
 		opts = {},
 	},
 	{
 		"windwp/nvim-ts-autotag",
-		event = "VeryLazy",
+		event = "InsertEnter",
 		opts = {},
 	},
 	{
 		"numToStr/Comment.nvim",
+		event = "BufReadPost",
 		lazy = true,
 		keys = {
 			{ "gc", mode = { "n", "x" } },
@@ -25,6 +26,7 @@ return {
 	},
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
+		event = "BufReadPost",
 		lazy = true,
 		config = function()
 			require("ts_context_commentstring").setup({

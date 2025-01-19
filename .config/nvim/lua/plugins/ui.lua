@@ -2,6 +2,7 @@ return {
 	{
 		"nvimdev/dashboard-nvim",
 		event = "VimEnter",
+		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 		opts = {
 			theme = "hyper",
 			config = {
@@ -21,10 +22,10 @@ return {
 				},
 			},
 		},
-		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
 	{
 		"romgrk/barbar.nvim",
+		vent = "BufReadPost",
 		dependencies = {
 			"lewis6991/gitsigns.nvim",
 			"nvim-tree/nvim-web-devicons",
@@ -36,7 +37,7 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		opts = {},
 	},
 	{
@@ -83,22 +84,22 @@ return {
 	},
 	{
 		"stevearc/dressing.nvim",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		opts = {},
 	},
 	{
 		"echasnovski/mini.cursorword",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		opts = {},
 	},
 	{
 		"echasnovski/mini.indentscope",
-		event = { "BufReadPre", "BufNewFile" },
+		event = "BufReadPost",
 		opts = {},
 	},
 	{
 		"echasnovski/mini.diff",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		opts = {},
 		keys = {
 			{
@@ -112,8 +113,7 @@ return {
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-		event = "VeryLazy",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
+		event = "BufReadPost",
 		opts = {
 			file_types = { "markdown", "copilot-chat" },
 		},
@@ -121,7 +121,7 @@ return {
 	{
 		"epwalsh/obsidian.nvim",
 		version = "*",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		ft = "markdown",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -147,6 +147,7 @@ return {
 		},
 		{
 			"vinnymeller/swagger-preview.nvim",
+			event = "BufReadPost",
 			cmd = { "SwaggerPreview", "SwaggerPreviewStop", "SwaggerPreviewToggle" },
 			build = "npm i",
 			config = true,

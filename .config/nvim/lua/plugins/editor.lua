@@ -1,7 +1,7 @@
 return {
 	{
 		"simonmclean/triptych.nvim",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
@@ -9,14 +9,14 @@ return {
 		},
 		opts = {},
 		keys = {
-			{ "<leader>e", ":Triptych<CR>" },
+			{ "<leader>e", "<cmd>Triptych<CR>" },
 		},
 	},
 	{
 		"nvim-telescope/telescope.nvim",
+		event = "VimEnter",
 		tag = "0.1.8",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		event = "VeryLazy",
 		opts = {
 			defaults = {
 				file_ignore_patterns = {
@@ -62,7 +62,7 @@ return {
 	},
 	{
 		"kdheepak/lazygit.nvim",
-		event = "VeryLazy",
+		event = "VimEnter",
 		cmd = {
 			"LazyGit",
 			"LazyGitConfig",
@@ -79,7 +79,7 @@ return {
 	},
 	{
 		"folke/trouble.nvim",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		opts = {},
 		cmd = "Trouble",
 		keys = {
@@ -102,7 +102,7 @@ return {
 	},
 	{
 		"sindrets/diffview.nvim",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		opts = {},
 		keys = {
 			{ "<leader>ho", "<cmd>DiffviewOpen HEAD~1<CR>", desc = "Open DiffView against HEAD~1" },

@@ -1,6 +1,7 @@
 return {
 	{
 		"Shatur/neovim-ayu",
+		event = "BufReadPost",
 		lazy = false,
 		priority = 1000,
 		opts = {

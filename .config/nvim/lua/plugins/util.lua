@@ -1,7 +1,7 @@
 return {
 	{
 		"folke/which-key.nvim",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		opts = {},
 		keys = {
 			{
@@ -15,7 +15,7 @@ return {
 	},
 	{
 		"tyru/open-browser.vim",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		keys = {
 			{ "gx", "<Plug>(openbrowser-smart-search)", desc = "Open URL under cursor" },
 			{ "gx", "<Plug>(openbrowser-smart-search)", desc = "Search selected text", mode = "v" },
