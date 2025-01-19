@@ -195,17 +195,6 @@ return {
 				["json"] = js_formatters,
 				["css"] = js_formatters,
 			},
-			formatters = {
-				biome = {
-					command = "biome",
-					args = {
-						"check",
-						"--write",
-						"--stdin-file-path",
-						"$FILENAME",
-					},
-				},
-			},
 		},
 	},
 	-- rename path
