@@ -3,7 +3,8 @@ theme = ayu
 
 # font
 font-family = BerkeleyMono Nerd Font
- 
+font-size = 13
+
 # option
 macos-option-as-alt = true 
 
