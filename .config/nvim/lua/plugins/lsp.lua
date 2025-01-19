@@ -23,6 +23,7 @@ return {
 			"neovim/nvim-lspconfig",
 			"jay-babu/mason-null-ls.nvim",
 			"nvimtools/none-ls.nvim",
+			"ray-x/lsp_signature.nvim",
 		},
 
 		config = function()
@@ -38,7 +39,7 @@ return {
 					lspconfig[server_name].setup({})
 				end,
 			})
-			-- typo lsp
+			-- typo
 			lspconfig.typos_lsp.setup({
 				init_options = {
 					diagnosticSeverity = "Warning",
@@ -52,7 +53,7 @@ return {
 			})
 
 			vim.api.nvim_create_autocmd("LspAttach", {
-				callback = function(_)
+				callback = function(args)
 					vim.keymap.set("n", "gk", "<cmd>lua vim.lsp.buf.hover()<CR>")
 					vim.keymap.set("n", "gf", "<cmd>lua vim.lsp.buf.format()<CR>")
 					vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
@@ -65,6 +66,18 @@ return {
 					vim.keymap.set("n", "ge", "<cmd>lua vim.diagnostic.open_float()<CR>")
 					vim.keymap.set("n", "gn", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 					vim.keymap.set("n", "gN", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+					-- lsp signature
+					local bufnr = args.buf
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					if vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
+						return
+					end
+					require("lsp_signature").on_attach({
+						bind = true,
+						handler_opts = {
+							border = "rounded",
+						},
+					}, bufnr)
 				end,
 			})
 		end,
@@ -98,6 +111,7 @@ return {
 			luasnip.filetype_extend("javascriptreact", { "html" })
 
 			vim.opt.completeopt = { "menu", "menuone" }
+
 			cmp.setup({
 				snippet = {
 					expand = function(args)
