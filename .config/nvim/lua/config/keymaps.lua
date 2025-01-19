@@ -12,7 +12,9 @@ vim.api.nvim_set_keymap("", "J", "10j", { noremap = true, silent = true })
 
 -- edit
 vim.api.nvim_set_keymap("", "x", '"_x', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "c", '"_c', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "dd", '"_dd', { noremap = true, silent = true })
+
 -- buffer
 vim.api.nvim_set_keymap("", "<Leader>w", ":w<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>[", "<Cmd>BufferPrevious<CR>", { noremap = true, silent = true })
