@@ -93,9 +93,16 @@ return {
 		opts = {},
 	},
 	{
-		"echasnovski/mini.indentscope",
+		"lukas-reineke/indent-blankline.nvim",
 		event = "BufReadPost",
-		opts = {},
+		main = "ibl",
+		opts = {
+			exclude = {
+				filetypes = {
+					"dashboard",
+				},
+			},
+		},
 	},
 	{
 		"echasnovski/mini.diff",
