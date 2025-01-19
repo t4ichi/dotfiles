@@ -18,6 +18,7 @@ vim.api.nvim_set_keymap("", "<Leader>w", ":w<CR>", { noremap = true, silent = tr
 vim.api.nvim_set_keymap("n", "<Leader>[", "<Cmd>BufferPrevious<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>]", "<Cmd>BufferNext<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>d", "<Cmd>BufferClose<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>D", "<Cmd>BufferCloseAllButCurrent<CR>", { noremap = true, silent = true })
 
 -- window
 vim.api.nvim_set_keymap("n", "<C-w>|", ":vsplit<CR>", { noremap = true, silent = true })
