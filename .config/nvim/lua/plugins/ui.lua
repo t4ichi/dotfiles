@@ -51,6 +51,8 @@ return {
 			stages = "static",
 			presets = {
 				lsp_doc_border = true,
+				command_palette = true,
+				long_message_to_split = true,
 			},
 			lsp = {
 				override = {
@@ -83,9 +85,17 @@ return {
 		},
 	},
 	{
-		"stevearc/dressing.nvim",
-		event = "BufReadPost",
-		opts = {},
+		"nvim-telescope/telescope-ui-select.nvim",
+		config = function()
+			require("telescope").setup({
+				extensions = {
+					["ui-select"] = {
+						require("telescope.themes").get_dropdown({}),
+					},
+				},
+			})
+			require("telescope").load_extension("ui-select")
+		end,
 	},
 	{
 		"echasnovski/mini.cursorword",
