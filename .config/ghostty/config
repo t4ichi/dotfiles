@@ -3,6 +3,7 @@ theme = ayu
 
 # font
 font-family = BerkeleyMono Nerd Font
+font-feature = -dlig
 font-size = 13
 
 # option
