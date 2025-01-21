@@ -79,8 +79,18 @@ return {
 		keys = {
 			{
 				"<leader>nh",
-				"<cmd>NoiceHistory<cr>",
-				desc = "NoiceHistory",
+				function()
+					require("noice").cmd("history")
+				end,
+				desc = "Noice History",
+			},
+
+			{
+				"<leader>nt",
+				function()
+					require("noice").cmd("pick")
+				end,
+				desc = "Noice Picker (Telescope/FzfLua)",
 			},
 		},
 	},
