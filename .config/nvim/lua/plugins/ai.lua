@@ -151,6 +151,21 @@ return {
 				"<cmd>CopilotChatModels<CR>",
 				desc = "CopilotChat - Models",
 			},
+			{
+				"<leader>cs",
+				"<cmd>CopilotChatStop<CR>",
+				desc = "CopilotChat - Stop",
+			},
+			{
+				"<leader>cw",
+				"<cmd>CopilotChatSave<CR>",
+				desc = "CopilotChat - Save",
+			},
+			{
+				"<leader>cl",
+				"<cmd>CopilotChatLoad<CR>",
+				desc = "CopilotChat - Load",
+			},
 		},
 	},
 }
