@@ -183,6 +183,10 @@ return {
 
 								vim.cmd("CopilotChatLoad " .. filename)
 								require("telescope.actions").close(prompt_bufnr)
+
+								if vim.fn.bufwinnr("CopilotChat") == -1 then
+									vim.cmd("CopilotChat")
+								end
 							end)
 							return true
 						end,
