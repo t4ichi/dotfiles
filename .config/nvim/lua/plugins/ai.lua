@@ -158,12 +158,36 @@ return {
 			},
 			{
 				"<leader>cw",
-				"<cmd>CopilotChatSave<CR>",
+				function()
+					local current_time = os.date("%Y-%m-%d_%H-%M-%S")
+					vim.cmd("CopilotChatSave " .. current_time)
+				end,
 				desc = "CopilotChat - Save",
 			},
 			{
 				"<leader>cl",
-				"<cmd>CopilotChatLoad<CR>",
+				function()
+					local session_dir = vim.fn.stdpath("data") .. "/copilotchat_history"
+					local sessions = vim.fn.globpath(session_dir, "*", false, true)
+					table.sort(sessions, function(a, b)
+						return vim.fn.getftime(a) < vim.fn.getftime(b)
+					end)
+					require("telescope.builtin").find_files({
+						prompt_title = "Load CopilotChat Session",
+						cwd = session_dir,
+						find_command = { "ls", "-t" },
+						attach_mappings = function(_, map)
+							map("i", "<CR>", function(prompt_bufnr)
+								local selection = require("telescope.actions.state").get_selected_entry()
+								local filename = selection.value:gsub("%.json$", "")
+
+								vim.cmd("CopilotChatLoad " .. filename)
+								require("telescope.actions").close(prompt_bufnr)
+							end)
+							return true
+						end,
+					})
+				end,
 				desc = "CopilotChat - Load",
 			},
 		},
