@@ -26,7 +26,7 @@ brew "tree"
 
 # Casks
 cask "aquaskk"
-cask "docker"
+# cask "docker"
 cask "font-blex-mono-nerd-font"
 cask "ghostty"
 cask "hammerspoon"
