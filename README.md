@@ -13,4 +13,4 @@ cd ~/dotfiles
 Build
 ```sh
 make
-``
+```
