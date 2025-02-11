@@ -6,16 +6,12 @@ return {
 		opts = {
 			theme = "doom",
 			config = {
-				week_header = {
-					enable = true,
+				week_header = { enable = true },
+				shortcut = {
+					{ desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
 				},
 				center = {
-					{
-						icon = "  ",
-						desc = "Update plugins",
-						action = "Lazy update",
-						key = "u",
-					},
+					{ icon = "  ", desc = "Update plugins", action = "Lazy update", key = "u" },
 					{
 						icon = "  ",
 						desc = "Find files",
@@ -41,7 +37,6 @@ return {
 						key = "s",
 					},
 				},
-				footer = { "Happy coding!" },
 				vertical_center = true,
 			},
 		},
