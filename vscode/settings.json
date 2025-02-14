@@ -1,0 +1,133 @@
+{
+  "window.newWindowDimensions": "maximized",
+  // Editor settings
+  "editor.lineNumbers": "on",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.autoIndent": "full",
+  "editor.rulers": [80, 120],
+  "editor.renderWhitespace": "boundary",
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {},
+  "editor.inlineSuggest.enabled": true,
+  "editor.unicodeHighlight.nonBasicASCII": false,
+  "editor.unicodeHighlight.invisibleCharacters": false,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+
+  // Vim settings
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-f>": false,
+    "<C-w>": false
+  },
+  "vim.insertModeKeyBindings": [{ "before": ["j", "k"], "after": ["<Esc>"] }],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["k"], "after": ["g", "k"] },
+    { "before": ["j"], "after": ["g", "j"] },
+    { "before": ["K"], "after": ["1", "0", "k"] },
+    { "before": ["J"], "after": ["1", "0", "j"] },
+    { "before": ["H"], "after": ["0"] },
+    { "before": ["L"], "after": ["$"] },
+    { "before": ["x"], "after": ["\"", "_", "x"] },
+    { "before": ["d", "d"], "after": ["\"", "_", "d", "d"] },
+    { "before": ["D"], "after": ["\"", "_", "D"] },
+    { "before": ["<leader>", "d", "d"], "after": ["d", "d"] },
+    { "before": ["g", "k"], "commands": ["editor.action.showHover"] },
+    { "before": ["g", "f"], "commands": ["editor.action.formatDocument"] },
+    { "before": ["g", "r"], "commands": ["editor.action.goToReferences"] },
+    { "before": ["g", "d"], "commands": ["editor.action.revealDefinition"] },
+    { "before": ["g", "D"], "commands": ["editor.action.revealDeclaration"] },
+    { "before": ["g", "i"], "commands": ["editor.action.goToImplementation"] },
+    { "before": ["g", "t"], "commands": ["editor.action.goToTypeDefinition"] },
+    { "before": ["g", "n"], "commands": ["editor.action.rename"] },
+    { "before": ["g", "a"], "commands": ["editor.action.quickFix"] },
+    { "before": ["g", "e"], "commands": ["editor.action.showHover"] },
+    { "before": ["g", "]"], "commands": ["editor.action.marker.next"] },
+    { "before": ["g", "["], "commands": ["editor.action.marker.prev"] }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": ["k"], "after": ["g", "k"] },
+    { "before": ["j"], "after": ["g", "j"] },
+    { "before": ["K"], "after": ["1", "0", "k"] },
+    { "before": ["J"], "after": ["1", "0", "j"] },
+    { "before": ["H"], "after": ["0"] },
+    { "before": ["L"], "after": ["$"] }
+  ],
+  "vim.hlsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.matchpairs": "(:),{:},[:],<:>",
+  "vim.showcmd": true,
+  "vim.autoindent": true,
+  "vim.visualstar": true,
+  "vim.incsearch": true,
+  "vim.useCtrlKeys": true,
+
+  // Workbench settings
+  "workbench.iconTheme": "ayu",
+  "workbench.colorTheme": "Ayu Mirage Bordered",
+  "workbench.statusBar.visible": true,
+  "workbench.settings.applyToAllProfiles": [],
+  // Terminal settings
+  "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "terminal.integrated.fontSize": 14,
+
+  // Explorer settings
+  "explorer.confirmDelete": false,
+
+  // File settings
+  "files.encoding": "utf8",
+  "files.trimTrailingWhitespace": true,
+  "files.autoGuessEncoding": true,
+  "files.autoSaveDelay": 1000,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/*.swp": true,
+    "**/*.swo": true
+  },
+
+  // Search settings
+  "search.smartCase": true,
+
+  // Security settings
+  "security.workspace.trust.untrustedFiles": "open",
+
+  // Git settings
+  "git.autofetch": true,
+
+  // Live Preview settings
+  "livePreview.debugOnExternalPreview": true,
+  "livePreview.notifyOnOpenLooseFile": false,
+
+  // GitHub Copilot settings
+  "github.copilot.editor.enableAutoCompletions": true,
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "github.copilot.chat.terminalChatLocation": "terminal",
+  "github.copilot.chat.experimental.codeGeneration.instructions": [],
+  "github.copilot.advanced": {
+    "authProvider": "github"
+  },
+
+  // Markdown settings
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
+  }
+}
