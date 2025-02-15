@@ -19,3 +19,8 @@ link: .bin/link.sh
 	@echo "Running link.sh..."
 	@if [ ! -x .bin/link.sh ]; then chmod +x .bin/link.sh; fi
 	@.bin/link.sh
+	
+vscode: .bin/vscode.sh
+	@echo "Running vscode.sh..."
+	@if [ ! -x .bin/vscode.sh ]; then chmod +x .bin/vscode.sh; fi
+	@.bin/vscode.sh
