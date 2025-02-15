@@ -6,3 +6,6 @@ if [ "$(uname)" != "Darwin" ] ; then
 fi
 
 brew bundle --global
+# brew update
+# brew upgrade
+# brew cleanup
