@@ -2,7 +2,7 @@
 theme = ayu
 
 # font
-font-family = "SF Mono"
+font-family = "JetBrainsMono Nerd Font Mono"
 font-family = "Hiragino Kaku Gothic ProN"
 font-feature = -dlig
 font-size = 13
