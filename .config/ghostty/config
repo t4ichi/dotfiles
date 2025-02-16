@@ -2,7 +2,8 @@
 theme = ayu
 
 # font
-font-family = BlexMono Nerd Font Mono
+font-family = "SF Mono"
+font-family = "Hiragino Kaku Gothic ProN"
 font-feature = -dlig
 font-size = 13
 
