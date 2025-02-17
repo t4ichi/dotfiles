@@ -47,6 +47,14 @@ return {
         mode = "n",
       },
       {
+        "<leader>fr",
+        function()
+          require("telescope.builtin").oldfiles()
+        end,
+        desc = "Telescope recent files",
+        mode = "n",
+      },
+      {
         "<leader>fb",
         function()
           require("telescope.builtin").buffers()
