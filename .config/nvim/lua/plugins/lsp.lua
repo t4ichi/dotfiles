@@ -8,6 +8,7 @@ local lsp_servers = {
   "jsonls",
   "typos_lsp",
   "tailwindcss",
+  "astro-language-server"
 }
 
 local js_formatters = {
