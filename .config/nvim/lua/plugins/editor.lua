@@ -22,33 +22,20 @@ return {
       picker = {
         hidden = true,
         ignore_patterns = { "node_modules/", ".git/", "dist/", "build/" },
-      }
+      },
+      lazygit = {}
     },
     keys = {
       -- find
       { "<leader>fb", function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
       { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
       { "<leader>ff", function() Snacks.picker.files() end,                                   desc = "Find Files" },
-      { "<leader>fg", function() Snacks.picker.grep() end,                                    desc = "Grep" },
       { "<leader>fr", function() Snacks.picker.recent() end,                                  desc = "Recent" },
+      -- grep
+      { "<leader>fg", function() Snacks.picker.grep() end,                                    desc = "Grep" },
+      -- lazygit
+      { "<leader>lg", function() Snacks.lazygit() end,                                        desc = "LazyGit" },
     }
-  },
-  {
-    "kdheepak/lazygit.nvim",
-    event = "VimEnter",
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    keys = {
-      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-    },
   },
   {
     "folke/trouble.nvim",
