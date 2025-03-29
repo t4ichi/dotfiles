@@ -23,7 +23,8 @@ return {
         hidden = true,
         ignore_patterns = { "node_modules/", ".git/", "dist/", "build/" },
       },
-      lazygit = {}
+      lazygit = {},
+      image = {}
     },
     keys = {
       -- find
