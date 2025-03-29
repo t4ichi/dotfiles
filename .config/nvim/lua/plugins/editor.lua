@@ -17,60 +17,21 @@ return {
     },
   },
   {
-    "nvim-telescope/telescope.nvim",
-    event = "VimEnter",
-    tag = "0.1.8",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    "folke/snacks.nvim",
     opts = {
-      defaults = {
-        file_ignore_patterns = {
-          "node_modules/",
-          "%.git/",
-        },
-      },
+      picker = {
+        hidden = true,
+        ignore_patterns = { "node_modules/", ".git/", "dist/", "build/" },
+      }
     },
     keys = {
-      {
-        "<leader>ff",
-        function()
-          require("telescope.builtin").find_files()
-        end,
-        desc = "Telescope find files",
-        mode = "n",
-      },
-      {
-        "<leader>fg",
-        function()
-          require("telescope.builtin").live_grep()
-        end,
-        desc = "Telescope live grep",
-        mode = "n",
-      },
-      {
-        "<leader>fr",
-        function()
-          require("telescope.builtin").oldfiles()
-        end,
-        desc = "Telescope recent files",
-        mode = "n",
-      },
-      {
-        "<leader>fb",
-        function()
-          require("telescope.builtin").buffers()
-        end,
-        desc = "Telescope buffers",
-        mode = "n",
-      },
-      {
-        "<leader>fh",
-        function()
-          require("telescope.builtin").help_tags()
-        end,
-        desc = "Telescope help tags",
-        mode = "n",
-      },
-    },
+      -- find
+      { "<leader>fb", function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
+      { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
+      { "<leader>ff", function() Snacks.picker.files() end,                                   desc = "Find Files" },
+      { "<leader>fg", function() Snacks.picker.grep() end,                                    desc = "Grep" },
+      { "<leader>fr", function() Snacks.picker.recent() end,                                  desc = "Recent" },
+    }
   },
   {
     "kdheepak/lazygit.nvim",
