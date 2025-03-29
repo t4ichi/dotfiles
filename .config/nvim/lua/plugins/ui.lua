@@ -1,45 +1,16 @@
 return {
   {
-    "nvimdev/dashboard-nvim",
+    "folke/snacks.nvim",
     event = "VimEnter",
-    dependencies = { { "nvim-tree/nvim-web-devicons" } },
     opts = {
-      theme = "doom",
-      config = {
-        week_header = { enable = true },
-        shortcut = {
-          { desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
+      dashboard = {
+        sections = {
+          { section = "header" },
+          { section = "keys",   gap = 1, padding = 1 },
+          { section = "startup" },
         },
-        center = {
-          { icon = "  ", desc = "Update plugins", action = "Lazy update", key = "u" },
-          {
-            icon = "  ",
-            desc = "Find files",
-            action = "Telescope find_files",
-            key = "f",
-          },
-          {
-            icon = "  ",
-            desc = "New file",
-            action = "enew",
-            key = "n",
-          },
-          {
-            icon = "  ",
-            desc = "Recently used files",
-            action = "Telescope oldfiles",
-            key = "r",
-          },
-          {
-            icon = "  ",
-            desc = "Settings",
-            action = "edit $MYVIMRC",
-            key = "s",
-          },
-        },
-        vertical_center = true,
       },
-    },
+    }
   },
   {
     "romgrk/barbar.nvim",
