@@ -36,6 +36,8 @@ return {
       { "<leader>fg", function() Snacks.picker.grep() end,                                    desc = "Grep" },
       -- lazygit
       { "<leader>lg", function() Snacks.lazygit() end,                                        desc = "LazyGit" },
+      -- git
+      { "<leader>gf", function() Snacks.picker.git_log_file() end,                            desc = "Git Log File" },
     }
   },
   {
