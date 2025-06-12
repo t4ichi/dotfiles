@@ -87,26 +87,6 @@ return {
     },
   },
   {
-    "epwalsh/obsidian.nvim",
-    version = "*",
-    event = "BufReadPost",
-    ft = "markdown",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    opts = {
-      workspaces = {
-        {
-          name = "personal",
-          path = ".",
-        },
-      },
-      follow_url_func = function(url)
-        vim.fn.jobstart({ "open", url })
-      end,
-    },
-  },
-  {
     "norcalli/nvim-colorizer.lua",
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "ColorizerToggle" },

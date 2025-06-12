@@ -17,14 +17,18 @@ local js_formatters = {
 
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
+    version = "^1.0.0",
     event = "BufReadPost",
     dependencies = {
-      "williamboman/mason-lspconfig.nvim",
+      {
+        "mason-org/mason-lspconfig.nvim",
+        version = "^1.0.0",
+      },
       "neovim/nvim-lspconfig",
       "jay-babu/mason-null-ls.nvim",
       "nvimtools/none-ls.nvim",
-      "ray-x/lsp_signature.nvim",
+      -- "ray-x/lsp_signature.nvim",
     },
 
     config = function()
@@ -73,12 +77,12 @@ return {
           if vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
             return
           end
-          require("lsp_signature").on_attach({
-            bind = true,
-            handler_opts = {
-              border = "rounded",
-            },
-          }, bufnr)
+          -- require("lsp_signature").on_attach({
+          --   bind = true,
+          --   handler_opts = {
+          --     border = "rounded",
+          --   },
+          -- }, bufnr)
         end,
       })
     end,
@@ -156,7 +160,7 @@ return {
         sources = {
           { name = "luasnip" },
           { name = "nvim_lsp" },
-          { name = "nvim_lsp_signature_help" },
+          -- { name = "nvim_lsp_signature_help" },
           { name = "nvim_lua" },
           { name = "buffer" },
           { name = "path" },
