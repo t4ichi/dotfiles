@@ -12,7 +12,9 @@
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": {},
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "explicit"
+  },
   "editor.inlineSuggest.enabled": true,
   "editor.unicodeHighlight.nonBasicASCII": false,
   "editor.unicodeHighlight.invisibleCharacters": false,
