@@ -10,7 +10,7 @@ return {
           auto_close = true,
           focus = "list",
           hidden = true,
-          ignored = true,
+          ignored = false,
           git_status = true,
           git_status_open = true,
           diagnostics = true,
