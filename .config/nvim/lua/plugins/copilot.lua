@@ -1,14 +1,33 @@
 return {
   {
-    "github/copilot.vim",
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    opts = {
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        keymap = {
+          accept = "<M-l>",
+          next = "<M-]>",
+          prev = "<M-[>",
+        },
+      },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = true,
+      },
+    },
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
-      { "github/copilot.vim" },
       { "nvim-lua/plenary.nvim" },
     },
+    cmd = "CopilotChat",
     opts = {
+      -- カスタムプロンプト
       prompts = {
         Commit = {
           prompt = "> #git:staged\n\n"
@@ -27,6 +46,44 @@ return {
         },
       },
     },
+    keys = {
+      { "<leader>a", "", desc = "+ai", mode = { "n", "x" } },
+      {
+        "<leader>aa",
+        function()
+          require("CopilotChat").toggle()
+        end,
+        desc = "Toggle (CopilotChat)",
+        mode = { "n", "x" },
+      },
+      {
+        "<leader>ax",
+        function()
+          require("CopilotChat").reset()
+        end,
+        desc = "Clear (CopilotChat)",
+        mode = { "n", "x" },
+      },
+      {
+        "<leader>aq",
+        function()
+          vim.ui.input({ prompt = "Quick Chat: " }, function(input)
+            if input ~= nil and input ~= "" then
+              require("CopilotChat").ask(input)
+            end
+          end)
+        end,
+        desc = "Quick Chat (CopilotChat)",
+        mode = { "n", "x" },
+      },
+      {
+        "<leader>ap",
+        function()
+          require("CopilotChat").select_prompt()
+        end,
+        desc = "Prompt Actions (CopilotChat)",
+        mode = { "n", "x" },
+      },
+    },
   },
 }
-
