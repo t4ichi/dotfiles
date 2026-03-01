@@ -21,6 +21,42 @@ for file in "$DOTFILES_DIR"/.*; do
   fi
 done
 
+# Handle .claude/settings.json separately
+claude_settings="$DOTFILES_DIR/.claude/settings.json"
+if [ -f "$claude_settings" ]; then
+  mkdir -p "$HOME/.claude"
+  claude_target="$HOME/.claude/settings.json"
+  if [ -L "$claude_target" ]; then
+    echo "Skipping $claude_target: symlink already exists."
+  elif [ -f "$claude_target" ]; then
+    echo "Backing up existing $claude_target to $claude_target.bak"
+    mv "$claude_target" "$claude_target.bak"
+    echo "Creating symbolic link for .claude/settings.json in $HOME/.claude."
+    ln -s "$claude_settings" "$claude_target"
+  else
+    echo "Creating symbolic link for .claude/settings.json in $HOME/.claude."
+    ln -s "$claude_settings" "$claude_target"
+  fi
+fi
+
+# Handle .claude/skills directory separately
+claude_skills="$DOTFILES_DIR/.claude/skills"
+if [ -d "$claude_skills" ]; then
+  mkdir -p "$HOME/.claude"
+  skills_target="$HOME/.claude/skills"
+  if [ -L "$skills_target" ]; then
+    echo "Skipping $skills_target: symlink already exists."
+  elif [ -d "$skills_target" ]; then
+    echo "Backing up existing $skills_target to $skills_target.bak"
+    mv "$skills_target" "$skills_target.bak"
+    echo "Creating symbolic link for .claude/skills in $HOME/.claude."
+    ln -s "$claude_skills" "$skills_target"
+  else
+    echo "Creating symbolic link for .claude/skills in $HOME/.claude."
+    ln -s "$claude_skills" "$skills_target"
+  fi
+fi
+
 # Handle .config directory separately
 config_dir="$DOTFILES_DIR/.config"
 if [ -d "$config_dir" ]; then
