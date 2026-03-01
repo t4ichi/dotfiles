@@ -1,14 +1,8 @@
 {
-	"permissions": {
-		"allow": [
-			"Bash(npm:*)",
-			"Bash(pnpm:*)",
-			"Bash(git:*)",
-			"Bash(cargo:*)",
-			"Read(**)",
-			"Edit(~/projects/**)",
-			"WebFetch(domain:*)"
-		]
-	},
-	"cleanupPeriodDays": 60
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y ccstatusline@latest",
+    "padding": 0
+  },
+  "alwaysThinkingEnabled": true
 }

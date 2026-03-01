@@ -1,0 +1,60 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      {
+        "id": "9bfb3c05-59eb-42c4-8cc4-69749b0da5b7",
+        "type": "git-branch",
+        "color": "brightRed"
+      },
+      {
+        "id": "18638001-14f2-4c08-b9e4-627fc4e03292",
+        "type": "git-changes",
+        "color": "brightGreen"
+      }
+    ],
+    [
+      {
+        "id": "3a3474db-203f-48a9-87d0-56269a4fd248",
+        "type": "model",
+        "color": "yellow",
+        "rawValue": true
+      },
+      {
+        "id": "d6df19c4-dfc1-4c46-a87c-be06616930f4",
+        "type": "context-percentage",
+        "color": "",
+        "rawValue": true
+      },
+      {
+        "id": "block-reset-time-widget",
+        "type": "custom-command",
+        "color": "cyan",
+        "rawValue": true,
+        "commandPath": "bash /Users/taichiitou/dotfiles/.bin/block-reset.sh",
+        "preserveColors": false,
+        "timeout": 5000
+      }
+    ],
+    []
+  ],
+  "flexMode": "full-minus-40",
+  "compactThreshold": 60,
+  "colorLevel": 2,
+  "defaultPadding": " ",
+  "inheritSeparatorColors": false,
+  "globalBold": true,
+  "powerline": {
+    "enabled": false,
+    "separators": [
+      ""
+    ],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [],
+    "endCaps": [],
+    "theme": "catppuccin",
+    "autoAlign": true
+  }
+}
