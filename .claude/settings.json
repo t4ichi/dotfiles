@@ -13,19 +13,6 @@
       "Bash(git clean *)"
     ]
   },
-  "hooks": {
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/scripts/notify.sh"
-          }
-        ]
-      }
-    ]
-  },
   "statusLine": {
     "type": "command",
     "command": "npx -y ccstatusline@latest",
