@@ -13,7 +13,7 @@ OAUTH_TTL=60
 
 _iso_to_epoch() {
   local clean
-  clean=$(echo "$1" | sed 's/\.[0-9]*Z$//')
+  clean=$(echo "$1" | sed -E 's/\.[0-9]*(Z|[+-][0-9:]+)$//;s/(Z|[+-][0-9:]+)$//')
   TZ=UTC date -j -f "%Y-%m-%dT%H:%M:%S" "$clean" "+%s" 2>/dev/null
 }
 
