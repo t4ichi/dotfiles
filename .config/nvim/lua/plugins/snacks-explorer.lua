@@ -18,7 +18,6 @@ return {
           watch = true,
           exclude = {
             "node_modules",
-            ".git",
             "*.pyc",
             "__pycache__",
             ".DS_Store",
