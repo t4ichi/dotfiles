@@ -33,7 +33,7 @@
 
       # git ブランチ（p10k: 緑・ブランチアイコン）
       git_branch = {
-        symbol = " ";
+        symbol = " ";
         style = "76";
         format = "[$symbol$branch]($style) ";
       };
