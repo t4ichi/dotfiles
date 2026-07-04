@@ -3,6 +3,9 @@
   # 対象ユーザ（home-manager 連携に必要）
   users.users.${username}.home = "/Users/${username}";
 
+  # homebrew 等のユーザ紐付けオプションに必要（root 実行アクティベーションの移行対応）
+  system.primaryUser = username;
+
   # Determinate Nix を使用しているため、nix-darwin 側の Nix 管理は無効化する。
   # （Determinate が独自デーモンで nix.conf を管理し、flakes も標準で有効）
   nix.enable = false;
