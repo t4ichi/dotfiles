@@ -6,7 +6,7 @@
     gh
 
     # terminal multiplexer（herdr は公式 flake から）
-    inputs.herdr.packages.${pkgs.system}.default
+    inputs.herdr.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # terminal emulator（macOSではソースビルド不可のため公式.dmg再パッケージ版）
     ghostty-bin
