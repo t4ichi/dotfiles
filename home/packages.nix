@@ -8,6 +8,9 @@
     # terminal multiplexer（herdr は公式 flake から）
     inputs.herdr.packages.${pkgs.system}.default
 
+    # terminal emulator（macOSではソースビルド不可のため公式.dmg再パッケージ版）
+    ghostty-bin
+
     # editor / multiplexer
     neovim
     tmux

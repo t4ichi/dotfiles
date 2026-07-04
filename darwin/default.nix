@@ -40,7 +40,6 @@
       "docker"
       "visual-studio-code"
       "postman"
-      "ghostty"
       "raycast"
       "nani"
     ];
