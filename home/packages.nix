@@ -23,7 +23,6 @@
 
     # dev tooling
     lazygit
-    claude-code   # Claude Code CLI（nixpkgs、darwin対応）
 
     # languages / runtimes
     go

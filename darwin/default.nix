@@ -13,9 +13,6 @@
   # nix-darwin が管理する nixpkgs のプラットフォーム
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  # unfree パッケージ（claude-code 等）を許可
-  nixpkgs.config.allowUnfree = true;
-
   # 初回のみ設定。以後は変更しないこと
   system.stateVersion = 5;
 
