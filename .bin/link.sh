@@ -64,6 +64,12 @@ if [ -d "$config_dir" ]; then
     config_base="$(basename "$config_file")"
     config_target="$HOME/.config/$config_base"
 
+    # herdr keeps runtime files (sockets, logs, session.json) in ~/.config/herdr,
+    # so link only config.toml instead of the whole directory (handled below).
+    if [ "$config_base" == "herdr" ]; then
+      continue
+    fi
+
     # Create .config directory if it doesn't exist
     mkdir -p "$HOME/.config"
 
@@ -75,4 +81,17 @@ if [ -d "$config_dir" ]; then
       ln -s "$config_file" "$config_target"
     fi
   done
+fi
+
+# Handle herdr config.toml separately (runtime files live in ~/.config/herdr)
+herdr_config="$DOTFILES_DIR/.config/herdr/config.toml"
+if [ -f "$herdr_config" ]; then
+  mkdir -p "$HOME/.config/herdr"
+  herdr_target="$HOME/.config/herdr/config.toml"
+  if [ -e "$herdr_target" ] || [ -L "$herdr_target" ]; then
+    echo "Skipping $herdr_target: already exists."
+  else
+    echo "Creating symbolic link for herdr/config.toml in $HOME/.config/herdr."
+    ln -s "$herdr_config" "$herdr_target"
+  fi
 fi
