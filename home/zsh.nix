@@ -17,7 +17,7 @@
         disabled = false;
         format = "[$symbol]($style) ";
         style = "bold white";
-        symbols.Macos = "";
+        symbols.Macos = "";
       };
 
       # ディレクトリ（p10k: truncate_to_unique 相当。親を1文字に省略したフルパス）
@@ -31,7 +31,7 @@
 
       # git ブランチ（p10k: 緑・ブランチアイコン）
       git_branch = {
-        symbol = " ";
+        symbol = " ";
         style = "bold green";
         format = "[$symbol$branch]($style) ";
       };
