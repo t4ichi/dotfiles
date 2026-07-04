@@ -28,7 +28,6 @@
     taps = [ ];
 
     brews = [
-      "herdr"   # ターミナル多重化（homebrew-core）
       "nvm"     # スコープ外だが当面維持（将来 Nix devshell 化を検討）
     ];
 

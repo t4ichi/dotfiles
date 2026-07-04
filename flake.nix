@@ -7,9 +7,12 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # herdr（nixpkgs に無いため公式 flake から取得）
+    herdr.url = "github:ogulcancelik/herdr";
   };
 
-  outputs = inputs @ { self, nixpkgs, nix-darwin, home-manager }:
+  outputs = inputs @ { self, nixpkgs, nix-darwin, home-manager, herdr }:
     let
       host = "taichinoMacBook-Pro";
       username = "taichiitou";

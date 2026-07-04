@@ -1,9 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
     # git / GitHub
     git
     gh
+
+    # terminal multiplexer（herdr は公式 flake から）
+    inputs.herdr.packages.${pkgs.system}.default
 
     # editor / multiplexer
     neovim
