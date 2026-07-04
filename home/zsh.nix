@@ -20,38 +20,40 @@
         symbols.Macos = "";
       };
 
-      # ディレクトリ（p10k: truncate_to_unique 相当。親を1文字に省略したフルパス）
+      # ディレクトリ（p10k: 親=31 teal / repo root=39 bold 青）
       directory = {
-        style = "bold cyan";
-        truncate_to_repo = false;      # リポジトリ名だけでなくフルパスを表示
-        truncation_length = 10;        # 表示する親階層の上限
-        fish_style_pwd_dir_length = 1; # 親ディレクトリを1文字に省略（~/p/st/p/... 相当）
+        style = "31";                   # 親パス: teal
+        before_repo_root_style = "31";  # リポジトリより上の親: teal
+        repo_root_style = "bold 39";    # リポジトリのルート: 明るい青・太字（p10k anchor 相当）
+        truncate_to_repo = false;       # フルパスを表示
+        truncation_length = 10;
+        fish_style_pwd_dir_length = 1;  # 親を1文字省略（深い階層で効く）
         format = "[$path]($style) ";
       };
 
       # git ブランチ（p10k: 緑・ブランチアイコン）
       git_branch = {
         symbol = " ";
-        style = "bold green";
+        style = "76";
         format = "[$symbol$branch]($style) ";
       };
 
-      # git 状態（starship 既定の記号を流用、緑基調）
+      # git 状態（p10k: clean/untracked 76 緑基調）
       git_status = {
-        style = "green";
+        style = "76";
       };
 
       # プロンプト記号（p10k: 成功=緑❯ / 失敗=赤❯ / vicmd=❮）
       character = {
-        success_symbol = "[❯](bold green)";
-        error_symbol = "[❯](bold red)";
-        vicmd_symbol = "[❮](bold green)";
+        success_symbol = "[❯](bold 76)";
+        error_symbol = "[❯](bold 196)";
+        vicmd_symbol = "[❮](bold 76)";
       };
 
       # 実行時間（p10k: 3秒以上で表示）
       cmd_duration = {
         min_time = 3000;
-        style = "yellow";
+        style = "101";
         format = "[$duration]($style) ";
       };
 
@@ -59,7 +61,7 @@
       time = {
         disabled = false;
         time_format = "%H:%M:%S";
-        style = "bright-black";
+        style = "66";
         format = "[$time]($style)";
       };
 
