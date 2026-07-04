@@ -1,20 +1,10 @@
 {
-  "statusLine": {
-    "type": "command",
-    "command": "npx -y ccstatusline@latest",
-    "padding": 0
-  },
-  "alwaysThinkingEnabled": true,
   "permissions": {
     "deny": [
       "Read(~/.ssh/**)",
       "Read(~/.aws/**)",
-      "Read(~/.config/gcloud/**)",
-      "Read(**/.env)",
-      "Read(**/.env.*)",
       "Read(**/secrets/**)",
       "Read(**/credentials*)",
-      "Bash(curl *)",
       "Bash(wget *)",
       "Bash(git push *)",
       "Bash(git push --force *)",
@@ -22,5 +12,33 @@
       "Bash(git reset --hard *)",
       "Bash(git clean *)"
     ]
-  }
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/scripts/notify.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y ccstatusline@latest",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "terraform@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "low",
+  "tui": "fullscreen",
+  "preferredNotifChannel": "terminal_bell"
 }
