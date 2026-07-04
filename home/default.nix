@@ -1,7 +1,6 @@
 { username, ... }:
 {
-  # Phase 4 で ./dotfiles.nix を追加
-  imports = [ ./packages.nix ./claude-code.nix ./zsh.nix ];
+  imports = [ ./packages.nix ./claude-code.nix ./zsh.nix ./dotfiles.nix ];
 
   home.username = username;
   home.homeDirectory = "/Users/${username}";
