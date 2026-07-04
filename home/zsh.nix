@@ -20,11 +20,12 @@
         symbols.Macos = "";
       };
 
-      # ディレクトリ（p10k: dir foreground 31 ≒ cyan）
+      # ディレクトリ（p10k: truncate_to_unique 相当。親を1文字に省略したフルパス）
       directory = {
         style = "bold cyan";
-        truncation_length = 3;
-        truncate_to_repo = true;
+        truncate_to_repo = false;      # リポジトリ名だけでなくフルパスを表示
+        truncation_length = 10;        # 表示する親階層の上限
+        fish_style_pwd_dir_length = 1; # 親ディレクトリを1文字に省略（~/p/st/p/... 相当）
         format = "[$path]($style) ";
       };
 
