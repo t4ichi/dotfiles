@@ -3,10 +3,11 @@
   # 対象ユーザ（home-manager 連携に必要）
   users.users.${username}.home = "/Users/${username}";
 
-  # flakes / nix-command を有効化
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # Determinate Nix を使用しているため、nix-darwin 側の Nix 管理は無効化する。
+  # （Determinate が独自デーモンで nix.conf を管理し、flakes も標準で有効）
+  nix.enable = false;
 
-  # nix-darwin 自体が管理する nixpkgs のプラットフォーム
+  # nix-darwin が管理する nixpkgs のプラットフォーム
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   # 初回のみ設定。以後は変更しないこと
