@@ -24,3 +24,4 @@ window-height = 40
 window-width = 140
 window-padding-balance = true
 
+desktop-notifications = true
