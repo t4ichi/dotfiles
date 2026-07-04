@@ -43,9 +43,13 @@
       "ghostty"
       "raycast"
       "nani"
-      "font-jetbrains-mono-nerd-font"
     ];
   };
+
+  # フォントは Nix で宣言的に管理（cask から移行）
+  fonts.packages = [
+    pkgs.nerd-fonts.jetbrains-mono
+  ];
 
   # Phase 5 で system.defaults を追記
 }
