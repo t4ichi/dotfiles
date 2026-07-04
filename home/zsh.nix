@@ -50,9 +50,9 @@
         vicmd_symbol = "[❮](bold 76)";
       };
 
-      # 実行時間（p10k: 3秒以上で表示）
+      # 実行時間（2秒以上かかったコマンドのみ表示。しきい値であり表示遅延は発生しない）
       cmd_duration = {
-        min_time = 3000;
+        min_time = 2000;
         style = "101";
         format = "[$duration]($style) ";
       };
@@ -83,8 +83,6 @@
     # 旧 .zshrc の alias を移植
     shellAliases = {
       lg = "lazygit";
-      ld = "lazydocker";
-      dc = "docker-compose";
       vi = "nvim";
     };
 
