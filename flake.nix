@@ -28,6 +28,8 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            # 既存ファイルと衝突したら .backup へ退避してから管理下に置く
+            home-manager.backupFileExtension = "backup";
             home-manager.users.${username} = import ./home/default.nix;
             home-manager.extraSpecialArgs = { inherit inputs username; };
           }
