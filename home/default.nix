@@ -1,7 +1,7 @@
 { username, ... }:
 {
-  # Phase 2 以降で ./packages.nix / ./zsh.nix / ./dotfiles.nix を追加
-  imports = [ ];
+  # Phase 3 以降で ./zsh.nix / ./dotfiles.nix を追加
+  imports = [ ./packages.nix ];
 
   home.username = username;
   home.homeDirectory = "/Users/${username}";
