@@ -37,7 +37,6 @@ alias lg='lazygit'
 alias ld='lazydocker'
 alias dc='docker-compose'
 alias vi='nvim'
-alias yz='yazi'
 
 # NVM
 export NVM_DIR="$HOME/.nvm"

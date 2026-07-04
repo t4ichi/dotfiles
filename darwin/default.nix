@@ -13,6 +13,37 @@
   # 初回のみ設定。以後は変更しないこと
   system.stateVersion = 5;
 
-  # Phase 2 で homebrew（casks/taps/brews）を追記
+  # GUI アプリ・フォント・サービスは Homebrew を宣言的に管理する。
+  homebrew = {
+    enable = true;
+    onActivation = {
+      autoUpdate = false;   # switch のたびに brew update しない（初期は現状維持）
+      upgrade = false;      # 自動アップグレードしない
+      cleanup = "none";     # 宣言外の brew/cask を削除しない（安全のため初期は none）
+    };
+
+    taps = [ ];
+
+    brews = [
+      "herdr"   # ターミナル多重化（homebrew-core）
+      "nvm"     # スコープ外だが当面維持（将来 Nix devshell 化を検討）
+    ];
+
+    casks = [
+      "arc"
+      "google-chrome"
+      "claude"
+      "slack"
+      "obsidian"
+      "docker"
+      "visual-studio-code"
+      "postman"
+      "ghostty"
+      "raycast"
+      "nani"
+      "font-jetbrains-mono-nerd-font"
+    ];
+  };
+
   # Phase 5 で system.defaults を追記
 }
