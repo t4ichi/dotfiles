@@ -37,7 +37,7 @@
       "claude"
       "slack"
       "obsidian"
-      "docker"
+      "docker-desktop"
       "visual-studio-code"
       "postman"
       "raycast"
