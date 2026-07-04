@@ -43,3 +43,11 @@ alias yz='yazi'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 
+
+# mysql-client
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
+
+export PATH="$HOME/.devcontainers/bin:$PATH"
