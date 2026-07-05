@@ -8,7 +8,7 @@
 
     settings = {
       # color
-      theme = "catppuccin-mocha";
+      theme = "Catppuccin Mocha";
 
       # font（複数指定はリストで。フォールバック順）
       font-family = [
