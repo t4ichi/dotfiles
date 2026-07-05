@@ -7,9 +7,7 @@
 
     # terminal multiplexer（herdr は公式 flake から）
     inputs.herdr.packages.${pkgs.stdenv.hostPlatform.system}.default
-
-    # terminal emulator（macOSではソースビルド不可のため公式.dmg再パッケージ版）
-    ghostty-bin
+    # ghostty は programs.ghostty（home/ghostty.nix）で管理
 
     # editor / multiplexer
     neovim

@@ -14,13 +14,13 @@ in
     ".claude/settings.json".source = link "${dots}/.claude/settings.json";
     ".claude/skills".source = link "${dots}/.claude/skills";
 
-    # ~/.config 配下
+    # ~/.config 配下（nvim は LazyVim が書き込むため symlink 管理のまま）
     ".config/nvim".source = link "${dots}/.config/nvim";
-    ".config/ghostty".source = link "${dots}/.config/ghostty";
 
     # herdr はランタイムファイル（socket/log/session.json）保護のため config.toml のみ
     ".config/herdr/config.toml".source = link "${dots}/.config/herdr/config.toml";
   };
+  # ghostty は programs.ghostty（home/ghostty.nix）で完全Nix管理
 
   # 管理対象外（意図的に除外）:
   # - yazi（棚卸しで削除したツール）
