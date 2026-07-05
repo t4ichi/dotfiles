@@ -87,8 +87,9 @@
     };
   };
 
-  # シンボリックホットキー27は -dict-add のマージ意味を保つためユーザ実行スクリプトで設定
-  system.activationScripts.extraUserActivation.text = ''
-    defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 "<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>65535</integer><integer>48</integer><integer>524288</integer></array><key>type</key><string>standard</string></dict></dict>"
+  # シンボリックホットキー27は -dict-add のマージ意味を保つため、root実行のpostActivationから
+  # sudo -u でユーザーとして defaults write する（activationはroot統一されたため）
+  system.activationScripts.postActivation.text = ''
+    sudo -u ${username} defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 "<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>65535</integer><integer>48</integer><integer>524288</integer></array><key>type</key><string>standard</string></dict></dict>"
   '';
 }
