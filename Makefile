@@ -1,4 +1,4 @@
-all: init brew defaults link 
+all: init brew defaults
 
 init: .bin/init.sh
 	@echo "Running init.sh..."
@@ -15,11 +15,6 @@ defaults: .bin/defaults.sh
 	@if [ ! -x .bin/defaults.sh ]; then chmod +x .bin/defaults.sh; fi
 	@.bin/defaults.sh
 
-link: .bin/link.sh
-	@echo "Running link.sh..."
-	@if [ ! -x .bin/link.sh ]; then chmod +x .bin/link.sh; fi
-	@.bin/link.sh
-	
 vscode: .bin/vscode.sh
 	@echo "Running vscode.sh..."
 	@if [ ! -x .bin/vscode.sh ]; then chmod +x .bin/vscode.sh; fi
