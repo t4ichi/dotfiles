@@ -1,4 +1,26 @@
 {
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "low",
+  "enabledPlugins": {
+    "commit-commands@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "terraform@claude-plugins-official": true
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/taichiitou/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "*"
+      }
+    ]
+  },
   "permissions": {
     "deny": [
       "Read(~/.ssh/**)",
@@ -13,19 +35,11 @@
       "Bash(git clean *)"
     ]
   },
+  "preferredNotifChannel": "terminal_bell",
   "statusLine": {
-    "type": "command",
     "command": "npx -y ccstatusline@latest",
-    "padding": 0
+    "padding": 0,
+    "type": "command"
   },
-  "enabledPlugins": {
-    "superpowers@claude-plugins-official": true,
-    "context7@claude-plugins-official": true,
-    "terraform@claude-plugins-official": true,
-    "commit-commands@claude-plugins-official": true
-  },
-  "alwaysThinkingEnabled": true,
-  "effortLevel": "low",
-  "tui": "fullscreen",
-  "preferredNotifChannel": "terminal_bell"
+  "tui": "fullscreen"
 }
