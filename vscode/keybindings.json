@@ -35,7 +35,6 @@
     "command": "workbench.action.closeActiveEditor",
     "when": "vim.active && vim.mode != 'Insert'"
   },
-
   // sidebar
   //explorer
   {
@@ -97,9 +96,4 @@
     "command": "workbench.action.terminal.toggleTerminal",
     "when": "!searchViewletVisible && !inDebugMode && vim.mode != 'SearchInProgressMode' && vim.active && vim.mode != 'Insert' && !terminalFocus && !view.workbench.panel.chat.view.copilot.visible"
   },
-  {
-    "key": "escape",
-    "command": "workbench.action.terminal.toggleTerminal",
-    "when": "terminalFocus"
-  }
 ]
