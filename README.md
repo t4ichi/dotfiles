@@ -36,19 +36,20 @@ darwin-rebuild switch --flake ~/dotfiles#"$(scutil --get LocalHostName)"
 
 ## 構成
 
-# 責務ベースの構成（浅い階層=抽象、具体は配下）
+# 機構分離の構成（nix の宣言 と 設定ペイロード を分ける）
 ```
 flake.nix / flake.lock  # 構築の根
 bootstrap.sh            # Nix 導入前の手続き的ブートストラップ
-system/                 # OS/マシン面: Homebrew(apps) / fonts / macOS defaults
-user/                   # home-manager: packages / shell / symlinks(配置写像) / claude 導入
-tools/                  # 個別ツール設定: nvim / ghostty / herdr / mise / git / vscode
-secrets/                # マシン固有の秘匿値（雛形 + .gitignore 実体）
+nix/                    # Nix の宣言（“どう組み上げるか”）
+  darwin/               #   nix-darwin: Homebrew(apps) / fonts / macOS defaults
+  home/                 #   home-manager: packages / shell / git / vscode / claude 導入 / symlinks
+config/                 # 設定ペイロード（アプリが実行時に読む実ファイル）: nvim / ghostty / herdr / mise
+secrets/                # マシン固有の秘匿値（雛形 + .gitignore 実体）: git / zsh
 .claude/                # Claude Code のプロジェクト設定（規約上ルート固定・特別扱い）
 ```
 
-- 配置先（`~/.config` 等）は `user/symlinks.nix` が一手に管理。ソースの
-  ディレクトリ名はデプロイ先を知らない（責務で分割）。
+- 配置先（`~/.config` 等）は `nix/home/symlinks.nix` が一手に管理。ソースの
+  ディレクトリ名（config/ 等）はデプロイ先の事情（先頭ドット等）を持たない。
 - CLI/フォントは Nix、GUI アプリは Homebrew(cask) を nix-darwin から宣言管理。
-- tools/* はリポジトリ実体への symlink 管理（直接編集で即反映）。
+- config/* はリポジトリ実体への symlink 管理（直接編集で即反映）。
 - vscode は programs.vscode、zsh(starship) は Nix 生成。

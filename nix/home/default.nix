@@ -5,8 +5,8 @@
     ./shell.nix
     ./claude-code.nix
     ./symlinks.nix
-    ../tools/git/git.nix
-    ../tools/vscode/vscode.nix
+    ./git.nix
+    ./vscode.nix
   ];
 
   home.username = username;

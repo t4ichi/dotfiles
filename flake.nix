@@ -21,14 +21,14 @@
         inherit system;
         specialArgs = { inherit inputs username; };
         modules = [
-          ./system
+          ./nix/darwin
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             # 既存ファイルと衝突したら .backup へ退避してから管理下に置く
             home-manager.backupFileExtension = "backup";
-            home-manager.users.${username} = import ./user;
+            home-manager.users.${username} = import ./nix/home;
             home-manager.extraSpecialArgs = { inherit inputs username; };
           }
         ];
