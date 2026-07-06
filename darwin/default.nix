@@ -13,6 +13,9 @@
   # nix-darwin が管理する nixpkgs のプラットフォーム
   nixpkgs.hostPlatform = "aarch64-darwin";
 
+  # VSCode 拡張の一部（ms-vscode-remote / vsliveshare / 言語パック等）が unfree のため許可
+  nixpkgs.config.allowUnfree = true;
+
   # 初回のみ設定。以後は変更しないこと
   system.stateVersion = 5;
 

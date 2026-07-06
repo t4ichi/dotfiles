@@ -29,11 +29,7 @@ in
     # 社内プロキシ等マシン固有の値（.gitignore済み）も同様にpath参照のみ。
     # 存在しないマシン（個人PC等）では zsh 側が [ -f ... ] でスキップする。
     ".config/zsh/proxy.env".source = link "${dots}/.config/zsh/proxy.env";
-
-    # VSCode（設定のみ symlink 管理。拡張は数が多く nixpkgs 未収録も多いため対象外）
-    # 旧 .bin/vscode.sh の置き換え。GUI での編集がリポジトリ実体へ書き込まれる。
-    "Library/Application Support/Code/User/settings.json".source = link "${dots}/apps/vscode/settings.json";
-    "Library/Application Support/Code/User/keybindings.json".source = link "${dots}/apps/vscode/keybindings.json";
+    # VSCode は programs.vscode（home/vscode.nix）で宣言管理
   };
   # ghostty は programs.ghostty（home/ghostty.nix）で完全Nix管理
 
