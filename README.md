@@ -41,7 +41,6 @@ flake.nix          # 入口（nixpkgs / nix-darwin / home-manager）
 darwin/default.nix # システム: Homebrew(casks) / fonts / macOS defaults
 home/              # home-manager: パッケージ / zsh+starship / ghostty / dotfiles / git
 bootstrap.sh       # Nix 導入前の最小ブートストラップ（唯一の手続き型）
-scripts/           # 補助スクリプト（Homebrew 棚卸し 等）
 ```
 
 - パッケージは Nix、GUI アプリ（cask）は Homebrew を nix-darwin から宣言管理。
