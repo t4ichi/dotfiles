@@ -34,8 +34,8 @@ in
 
     # VSCode（設定のみ symlink 管理。拡張は数が多く nixpkgs 未収録も多いため対象外）
     # 旧 .bin/vscode.sh の置き換え。GUI での編集がリポジトリ実体へ書き込まれる。
-    "Library/Application Support/Code/User/settings.json".source = link "${dots}/vscode/settings.json";
-    "Library/Application Support/Code/User/keybindings.json".source = link "${dots}/vscode/keybindings.json";
+    "Library/Application Support/Code/User/settings.json".source = link "${dots}/apps/vscode/settings.json";
+    "Library/Application Support/Code/User/keybindings.json".source = link "${dots}/apps/vscode/keybindings.json";
   };
   # ghostty は programs.ghostty（home/ghostty.nix）で完全Nix管理
 
