@@ -34,3 +34,8 @@ Temporary Items
 
 # Superpowers の設計/計画ドキュメント（プロセス作業物）
 docs/superpowers/
+
+# git identity（実際のメールアドレス等）。テンプレートは templates/ 参照。
+# ここに置いた実体ファイルへ home/dotfiles.nix が symlink する。
+.config/git/identity.gitconfig
+.config/git/identity-personal.gitconfig
