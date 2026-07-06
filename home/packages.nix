@@ -1,12 +1,11 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     # git / GitHub
     git
     gh
 
-    # terminal multiplexer（herdr は公式 flake から）
-    inputs.herdr.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # herdr は Homebrew(brews) で管理
     # ghostty は programs.ghostty（home/ghostty.nix）で管理
 
     # editor / multiplexer

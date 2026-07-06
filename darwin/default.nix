@@ -29,6 +29,7 @@
 
     brews = [
       "nvm"     # スコープ外だが当面維持（将来 Nix devshell 化を検討）
+      "herdr"   # nixpkgs版は darwin キャッシュが未成熟なため brew の bottle を使う
     ];
 
     casks = [

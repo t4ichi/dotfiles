@@ -7,19 +7,17 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # herdr（nixpkgs に無いため公式 flake から取得）
-    herdr.url = "github:ogulcancelik/herdr";
   };
 
-  outputs = inputs @ { self, nixpkgs, nix-darwin, home-manager, herdr }:
+  outputs = inputs @ { self, nixpkgs, nix-darwin, home-manager }:
     let
-      host = "taichinoMacBook-Pro";
-      username = "taichiitou";
       system = "aarch64-darwin";
-    in
-    {
-      darwinConfigurations.${host} = nix-darwin.lib.darwinSystem {
+      # ホスト名 (scutil --get LocalHostName) ごとのユーザー名
+      hosts = {
+        "taichinoMacBook-Pro" = "taichiitou";
+        "REDACTED-HOST" = "REDACTED-USER";
+      };
+      mkDarwinConfiguration = username: nix-darwin.lib.darwinSystem {
         inherit system;
         specialArgs = { inherit inputs username; };
         modules = [
@@ -35,5 +33,8 @@
           }
         ];
       };
+    in
+    {
+      darwinConfigurations = nixpkgs.lib.mapAttrs (host: username: mkDarwinConfiguration username) hosts;
     };
 }
