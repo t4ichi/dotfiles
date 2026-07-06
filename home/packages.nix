@@ -20,6 +20,7 @@
 
     # dev tooling
     lazygit
+    mise      # ランタイムのバージョン管理（nvm を置き換え）
 
     # languages / runtimes
     go

@@ -90,7 +90,7 @@
       EDITOR = "nvim";
     };
 
-    # 旧 .zshrc の残り（PATH / brew / nvm / キーバインド等）を移植。
+    # 旧 .zshrc の残り（PATH / brew / mise / キーバインド等）を移植。
     # ※ p10k instant-prompt / oh-my-zsh / brew版プラグイン読込は廃止済み。
     initContent = ''
       # マシン固有のプロキシ設定は公開リポジトリに含めないため、
@@ -107,9 +107,8 @@
       bindkey '^P' history-beginning-search-backward
       bindkey '^N' history-beginning-search-forward
 
-      # NVM（Homebrew で維持）
-      export NVM_DIR="$HOME/.nvm"
-      [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+      # mise（ランタイムのバージョン管理。nvm を置き換え）
+      eval "$(mise activate zsh)"
 
       # mysql-client
       export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
