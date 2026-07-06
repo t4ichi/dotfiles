@@ -22,11 +22,9 @@
     lazygit
     mise      # ランタイムのバージョン管理（nvm を置き換え）
 
-    # languages / runtimes
+    # languages / runtimes（node/pnpm は mise で管理）
     go
     rustup
-    nodejs
-    pnpm
 
     # file / shell utils
     uv

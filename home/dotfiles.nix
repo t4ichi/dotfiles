@@ -19,6 +19,9 @@ in
     # herdr はランタイムファイル（socket/log/session.json）保護のため config.toml のみ
     ".config/herdr/config.toml".source = link "${dots}/.config/herdr/config.toml";
 
+    # mise グローバル設定。symlink 越しに mise use -g が書き込めるよう live 管理。
+    ".config/mise/config.toml".source = link "${dots}/.config/mise/config.toml";
+
     # git identity（実際のメールアドレス等）は .gitignore 済みの実体を symlink するだけ。
     # mkOutOfStoreSymlink はパス文字列を張るだけで中身を読まないため、
     # 未追跡ファイルでも問題なく参照できる（初回のみ手動で中身を作成する）。
