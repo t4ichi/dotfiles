@@ -8,9 +8,8 @@
     # herdr は Homebrew(brews) で管理
     # ghostty は programs.ghostty（home/ghostty.nix）で管理
 
-    # editor / multiplexer
+    # editor（マルチプレクサは herdr を使用）
     neovim
-    tmux
 
     # search / navigation
     ripgrep

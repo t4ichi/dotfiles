@@ -8,8 +8,6 @@ in
   # mkOutOfStoreSymlink により、リポジトリを直接編集→即反映（rebuild 不要）を維持する。
   # （旧 .bin/link.sh の置き換え）
   home.file = {
-    ".tmux.conf".source = link "${dots}/.tmux.conf";
-
     # Claude Code（~/.claude はデータ用ディレクトリ。settings.json のみ管理）
     ".claude/settings.json".source = link "${dots}/.claude/settings.json";
 

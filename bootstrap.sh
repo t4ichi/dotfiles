@@ -29,12 +29,6 @@ if ! command -v brew >/dev/null 2>&1; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-# tmux plugin manager（tmux.conf が参照）
-if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-  echo "tmux plugin manager をインストールします..."
-  git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
-fi
-
 echo ""
 echo "Bootstrap 完了。次を実行してください:"
 echo "  sudo nix run nix-darwin -- switch --flake ~/dotfiles#$(scutil --get LocalHostName)"
