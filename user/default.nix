@@ -1,6 +1,13 @@
 { username, ... }:
 {
-  imports = [ ./packages.nix ./claude-code.nix ./zsh.nix ./dotfiles.nix ./git.nix ./vscode.nix ];
+  imports = [
+    ./packages.nix
+    ./shell.nix
+    ./claude-code.nix
+    ./symlinks.nix
+    ../tools/git/git.nix
+    ../tools/vscode/vscode.nix
+  ];
 
   home.username = username;
   home.homeDirectory = "/Users/${username}";

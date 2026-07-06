@@ -36,6 +36,7 @@
   "alwaysThinkingEnabled": true,
   "effortLevel": "low",
   "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
   "preferredNotifChannel": "terminal_bell",
-  "skipDangerousModePermissionPrompt": true
+  "model": "opus[1m]"
 }

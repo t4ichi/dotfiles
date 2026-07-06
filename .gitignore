@@ -36,7 +36,7 @@ Temporary Items
 docs/superpowers/
 
 # マシン固有の秘匿情報。同名の *.example がテンプレート。
-# ここに置いた実体ファイルへ home/dotfiles.nix が symlink する。
-.config/git/identity.gitconfig
-.config/git/identity-personal.gitconfig
-.config/zsh/proxy.env
+# ここに置いた実体ファイルへ user/symlinks.nix が symlink する。
+secrets/git/identity.gitconfig
+secrets/git/identity-personal.gitconfig
+secrets/zsh/proxy.env
