@@ -39,8 +39,8 @@ darwin-rebuild switch --flake ~/dotfiles#"$(scutil --get LocalHostName)"
 ```
 flake.nix          # 入口（nixpkgs / nix-darwin / home-manager）
 darwin/default.nix # システム: Homebrew(casks) / fonts / macOS defaults
-home/              # home-manager: パッケージ / zsh+starship / ghostty / dotfiles / git
-apps/              # ホーム構造に対応しないアプリ設定（vscode / raycast）
+home/              # home-manager: パッケージ / zsh+starship / vscode / dotfiles / git
+.config/           # ~/.config へ symlink する設定（nvim / ghostty / mise 等）
 bootstrap.sh       # Nix 導入前の最小ブートストラップ（唯一の手続き型）
 ```
 
