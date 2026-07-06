@@ -93,6 +93,10 @@
     # 旧 .zshrc の残り（PATH / brew / nvm / キーバインド等）を移植。
     # ※ p10k instant-prompt / oh-my-zsh / brew版プラグイン読込は廃止済み。
     initContent = ''
+      # マシン固有のプロキシ設定は公開リポジトリに含めないため、
+      # .gitignore 済みの実体を symlink 経由で参照し、実行時に読む。
+      [ -f "$HOME/.config/zsh/proxy.env" ] && source "$HOME/.config/zsh/proxy.env"
+
       # Homebrew
       eval "$(/opt/homebrew/bin/brew shellenv)"
 

@@ -20,6 +20,10 @@ cp .config/git/identity-personal.gitconfig.example .config/git/identity-personal
 #   identity.gitconfig          既定値（マシンごとに会社/個人を書き分ける）
 #   identity-personal.gitconfig ~/dotfiles 配下だけ強制的にこちらが使われる
 
+# 社内プロキシ等マシン固有の値も同様（不要なマシンでは作成しなくてOK）
+cp .config/zsh/proxy.env.example .config/zsh/proxy.env
+# ↑ 中身を実際のプロキシURL等に書き換える（無ければ何もexportされない）
+
 # 初回適用（darwin-rebuild がまだ PATH に無いため flake 経由）
 sudo nix run nix-darwin -- switch --flake ~/dotfiles#"$(scutil --get LocalHostName)"
 ```

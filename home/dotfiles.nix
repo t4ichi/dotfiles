@@ -24,6 +24,10 @@ in
     # 未追跡ファイルでも問題なく参照できる（初回のみ手動で中身を作成する）。
     ".config/git/identity.gitconfig".source = link "${dots}/.config/git/identity.gitconfig";
     ".config/git/identity-personal.gitconfig".source = link "${dots}/.config/git/identity-personal.gitconfig";
+
+    # 社内プロキシ等マシン固有の値（.gitignore済み）も同様にpath参照のみ。
+    # 存在しないマシン（個人PC等）では zsh 側が [ -f ... ] でスキップする。
+    ".config/zsh/proxy.env".source = link "${dots}/.config/zsh/proxy.env";
   };
   # ghostty は programs.ghostty（home/ghostty.nix）で完全Nix管理
 
