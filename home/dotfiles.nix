@@ -29,9 +29,11 @@ in
     # 社内プロキシ等マシン固有の値（.gitignore済み）も同様にpath参照のみ。
     # 存在しないマシン（個人PC等）では zsh 側が [ -f ... ] でスキップする。
     ".config/zsh/proxy.env".source = link "${dots}/.config/zsh/proxy.env";
+
+    # ghostty 設定（本体は Homebrew。config を live symlink 管理）
+    ".config/ghostty/config".source = link "${dots}/.config/ghostty/config";
     # VSCode は programs.vscode（home/vscode.nix）で宣言管理
   };
-  # ghostty は programs.ghostty（home/ghostty.nix）で完全Nix管理
 
   # 管理対象外（意図的に除外）:
   # - yazi（棚卸しで削除したツール）

@@ -45,6 +45,7 @@
       "postman"
       "raycast"
       "nani"
+      "ghostty"   # 設定は .config/ghostty/config を symlink 管理（home/dotfiles.nix）
     ];
   };
 

@@ -6,7 +6,7 @@
     gh
 
     # herdr は Homebrew(brews) で管理
-    # ghostty は programs.ghostty（home/ghostty.nix）で管理
+    # ghostty は Homebrew(cask)。設定は .config/ghostty/config を symlink 管理
 
     # editor（マルチプレクサは herdr を使用）
     neovim
