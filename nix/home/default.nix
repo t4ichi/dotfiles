@@ -3,10 +3,10 @@
   imports = [
     ./packages.nix
     ./shell.nix
-    ./claude-code.nix
     ./symlinks.nix
     ./programs/git.nix
     ./programs/vscode.nix
+    ./installers/claude-code.nix
   ];
 
   home.username = username;
