@@ -87,10 +87,11 @@
       compinit ''${_zcd:+-C} -d "$HOME/.zcompdump"
     '';
 
-    # 旧 .zshrc の alias を移植
     shellAliases = {
       lg = "lazygit";
       vi = "nvim";
+      # check + typecheck を実行し、出力を画面表示しつつクリップボードへコピー
+      pc = "(pnpm check && pnpm tsc) 2>&1 | tee >(pbcopy)";
     };
 
     sessionVariables = {
