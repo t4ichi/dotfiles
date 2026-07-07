@@ -3,7 +3,7 @@
   imports = [
     ./homebrew.nix
     ./fonts.nix
-    ./defaults.nix
+    ./preferences.nix
   ];
 
   # 対象ユーザ（home-manager 連携に必要）
