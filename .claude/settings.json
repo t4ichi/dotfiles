@@ -37,6 +37,5 @@
   "effortLevel": "low",
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "preferredNotifChannel": "terminal_bell",
-  "model": "opus[1m]"
+  "preferredNotifChannel": "terminal_bell"
 }
