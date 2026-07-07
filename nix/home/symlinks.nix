@@ -20,9 +20,8 @@ in
     ".claude/skills".source = link "${dots}/.claude/skills";
 
     # secrets/*（.gitignore 済みの実体を path 参照するだけ。初回のみ手動作成）
-    # 存在しないマシンでは proxy を zsh 側が [ -f ... ] でスキップする。
-    ".config/git/identity.gitconfig".source = link "${dots}/secrets/git/identity.gitconfig";
-    ".config/git/identity-personal.gitconfig".source = link "${dots}/secrets/git/identity-personal.gitconfig";
+    # git identity は git-identity コマンドで identity-active を切り替える方式のため
+    # ここでは symlink しない。存在しないマシンでは proxy を zsh 側が [ -f ] でスキップ。
     ".config/zsh/proxy.env".source = link "${dots}/secrets/zsh/proxy.env";
     # VSCode は programs.vscode（nix/home/vscode.nix）で宣言管理
   };
