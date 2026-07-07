@@ -1,5 +1,11 @@
-{ ... }:
+{ lib, ... }:
 {
+  # switch のたびに zcompdump を破棄し、次のシェルで一度だけ再構築させる
+  # （起動時は常に compinit -C で audit を省くため、新パッケージの補完は
+  #   switch 契機でのみ取り込まれる）。
+  home.activation.invalidateZcompdump =
+    lib.hm.dag.entryAfter [ "writeBoundary" ] ''$DRY_RUN_CMD rm -f "$HOME/.zcompdump"'';
+
   # プロンプトは starship（powerlevel10k lean スタイルを再現）
   programs.starship = {
     enable = true;
@@ -79,6 +85,14 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     enableCompletion = true;
+
+    # 既定の `compinit` は毎回 compaudit で全 fpath(Nixストア16dir) を検査し ~0.9s
+    # かかる。補完対象が変わるのは switch 時だけなので、起動時は常に compaudit を
+    # 省略(-C)して高速化し、dump の再構築は switch 時の activation に任せる。
+    completionInit = ''
+      autoload -Uz compinit
+      compinit -C -d "$HOME/.zcompdump"
+    '';
 
     # 旧 .zshrc の alias を移植
     shellAliases = {

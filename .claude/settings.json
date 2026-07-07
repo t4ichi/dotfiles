@@ -3,7 +3,6 @@
     "deny": [
       "Read(~/.ssh/**)",
       "Read(~/.aws/**)",
-      "Read(**/secrets/**)",
       "Read(**/credentials*)",
       "Bash(wget *)",
       "Bash(git push *)",
