@@ -1,0 +1,5 @@
+# マシン固有のホスト定義テンプレート。nix/hosts.local.nix にコピーして編集する。
+# 公開リポジトリに載せたくないホスト名/username 用（flake が --impure で読む）。
+{
+  # "your-hostname" = { username = "your-user"; };
+}

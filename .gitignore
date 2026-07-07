@@ -38,3 +38,6 @@ docs/superpowers/
 # マシン固有の秘匿情報。同名の *.example がテンプレート。
 secrets/git/identity-*.gitconfig
 secrets/zsh/proxy.env
+
+# 社内マシン等のホスト定義（ホスト名/username を公開しない）。flake が --impure で読む。
+nix/hosts.local.nix

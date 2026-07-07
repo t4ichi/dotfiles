@@ -12,13 +12,17 @@
   outputs = inputs @ { self, nixpkgs, nix-darwin, home-manager }:
     let
       system = "aarch64-darwin";
-      # 公開して問題ないホスト定義。社内マシン等は /etc/dotfiles/hosts.local.nix
-      # （git 管理外・各マシンで手動作成）で追加する。ローカル profile を読むには
-      # switch を --impure で実行する必要がある。
+      # 公開して問題ないホスト定義。社内マシン等は nix/hosts.local.nix
+      # （.gitignore 済み・リポジトリ内なので explorer から編集可）で追加する。
+      # username はここに書かず SUDO_USER/USER から導出（flake.nix に社内情報を残さない）。
+      # ローカル profile を読むには switch を --impure で実行する必要がある。
       localHosts =
-        if builtins.pathExists /etc/dotfiles/hosts.local.nix
-        then import /etc/dotfiles/hosts.local.nix
-        else { };
+        let
+          sudoUser = builtins.getEnv "SUDO_USER";
+          user = if sudoUser != "" then sudoUser else builtins.getEnv "USER";
+          p = "/Users/" + user + "/dotfiles/nix/hosts.local.nix";
+        in
+        if user != "" && builtins.pathExists p then import p else { };
       hosts = (import ./nix/hosts.nix) // localHosts;
       mkDarwinConfiguration = username: nix-darwin.lib.darwinSystem {
         inherit system;
