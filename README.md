@@ -10,9 +10,10 @@ cd ~/dotfiles
 ./bootstrap.sh   # Nix / CLT / Homebrew
 
 # 秘匿値はマシンごとに手動作成（.example をコピーして中身を書き換え）
-cp secrets/git/identity.gitconfig.example       secrets/git/identity.gitconfig
-cp secrets/git/identity-personal.gitconfig.example secrets/git/identity-personal.gitconfig
-cp secrets/zsh/proxy.env.example                secrets/zsh/proxy.env   # 不要なら省略可
+# git identity は好きな名前で複数作れる（切替は git-identity <name>）
+cp secrets/git/identity.gitconfig.example secrets/git/identity-work.gitconfig
+cp secrets/git/identity.gitconfig.example secrets/git/identity-personal.gitconfig
+cp secrets/zsh/proxy.env.example          secrets/zsh/proxy.env   # 不要なら省略可
 
 sudo nix run nix-darwin -- switch --flake ~/dotfiles#"$(scutil --get LocalHostName)"
 ```
