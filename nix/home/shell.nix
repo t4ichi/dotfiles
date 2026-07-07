@@ -80,18 +80,11 @@
     syntaxHighlighting.enable = true;
     enableCompletion = true;
 
-    # 既定の `compinit` は毎回 compaudit で全 fpath(Nixストア16dir) を検査し ~0.9s
-    # かかる。zcompdump が 24h 以内なら compaudit を省略(-C)して高速起動し、
-    # 古ければ通常の compinit で再構築＋再検査する（1日1回だけフル実行）。
+    # zcompdump が 24h 以内なら compaudit(全fpath検査 ~0.9s) を省略(-C)して高速起動。
     completionInit = ''
       autoload -Uz compinit
-      () {
-        if (( $# > 0 )); then
-          compinit -C -d "$HOME/.zcompdump"
-        else
-          compinit -d "$HOME/.zcompdump"
-        fi
-      } "$HOME/.zcompdump"(Nmh-24)
+      _zcd=("$HOME/.zcompdump"(Nmh-24))   # 24h以内なら非空
+      compinit ''${_zcd:+-C} -d "$HOME/.zcompdump"
     '';
 
     # 旧 .zshrc の alias を移植
