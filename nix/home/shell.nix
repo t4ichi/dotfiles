@@ -75,6 +75,9 @@
   programs.zsh = {
     enable = true;
 
+    # ディレクトリ名を打つだけで cd（`..` で上へ）。エイリアス不要の zsh 標準機能。
+    autocd = true;
+
     # oh-my-zsh / brew 版プラグインを廃止し home-manager ネイティブへ
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
