@@ -10,6 +10,7 @@
 
     # editor（マルチプレクサは herdr を使用）
     neovim
+    tree-sitter   # nvim-treesitter(main) がパーサのビルドに必要とする CLI
 
     # search / navigation
     ripgrep
