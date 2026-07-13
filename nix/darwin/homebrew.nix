@@ -28,6 +28,7 @@
       "nani"
       "ghostty"   # 設定は config/ghostty/config を symlink 管理（nix/home/symlinks.nix）
       "notion"
+      "qlmarkdown"   # Finderでmdファイルをスペースキーでプレビュー
     ];
   };
 }
