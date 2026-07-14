@@ -28,3 +28,12 @@ vim.keymap.set("n", "<leader>mg", go_grip_preview, {
   silent = true,
   desc = "Markdown preview (go-grip)",
 })
+
+-- nvim 終了時に go-grip サーバーを停止（起動しっぱなしを防ぐ）。
+-- ftplugin は md を開くたびに走るため augroup(clear) で重複登録を防ぐ。
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  group = vim.api.nvim_create_augroup("GoGripCleanup", { clear = true }),
+  callback = function()
+    vim.system({ "pkill", "-f", "go-grip" })
+  end,
+})
