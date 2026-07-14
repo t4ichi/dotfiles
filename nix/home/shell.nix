@@ -93,6 +93,8 @@
     shellAliases = {
       lg = "lazygit";
       vi = "nvim";
+      # md を GitHub 風にブラウザ表示（md間リンク遷移可）。例: mdp path/to/doc.md
+      mdp = "go-grip";
       # check + typecheck を実行し、出力を画面表示しつつクリップボードへコピー
       pc = "(pnpm check && pnpm tsc) 2>&1 | tee >(pbcopy)";
     };

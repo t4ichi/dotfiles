@@ -21,6 +21,7 @@
     # dev tooling
     lazygit
     mise      # ランタイムのバージョン管理（nvm を置き換え）
+    go-grip   # md を GitHub 風にブラウザ表示（オフライン/mermaid対応・md間リンク遷移可）
 
     # languages / runtimes（node/pnpm は mise で管理）
     go
